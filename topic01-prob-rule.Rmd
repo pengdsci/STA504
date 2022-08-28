@@ -17,6 +17,7 @@ output:
     keep_md: yes
   html_document: 
     toc: yes
+    toc_float: true
     toc_depth: 4
     fig_width: 6
     fig_height: 4
@@ -25,30 +26,51 @@ output:
     theme: readable
 ---
 <style type="text/css">
-h1.title {
-  font-size: 20px;
-  text-align: center;
-}
-h4.author { 
-    font-size: 18px;
-    text-align: center;
-}
-h4.date { 
-  font-size: 18px;
-  text-align: center;
-}
-h1 {
-    font-size: 22px;
-    text-align: center;
-}
-h2 {
-    font-size: 18px;
-    text-align: left;
-}
 
 div#TOC li {
     list-style:none;
+    background-image:none;
+    background-repeat:none;
+    background-position:0;
 }
+h1.title {
+  font-size: 24px;
+  color: DarkRed;
+  text-align: center;
+}
+h4.author { /* Header 4 - and the author and data headers use this too  */
+    font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  color: DarkRed;
+  text-align: center;
+}
+h4.date { /* Header 4 - and the author and data headers use this too  */
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+  color: DarkBlue;
+  text-align: center;
+}
+
+h1 { /* Header 3 - and the author and data headers use this too  */
+    font-size: 20px;
+    font-family: "Times New Roman", Times, serif;
+    color: darkred;
+    text-align: center;
+}
+h2 { /* Header 3 - and the author and data headers use this too  */
+    font-size: 18px;
+    font-family: "Times New Roman", Times, serif;
+    color: navy;
+    text-align: left;
+}
+
+h3 { /* Header 3 - and the author and data headers use this too  */
+    font-size: 16px;
+    font-family: "Times New Roman", Times, serif;
+    color: navy;
+    text-align: left;
+}
+
 </style>
 
 
@@ -542,6 +564,7 @@ To find the inverse of a function, we need to do the opposite of what the origin
 **Example 14**: Find the inverse function of $f(x) = 5\sqrt{x+4}-3$.
 
 **Solution**. We follow the above steps to find the inverse function.
+
 ```{r fig.align='center', out.width = '80%'}
 include_graphics("topic01/inverseFun.png")
 ```
