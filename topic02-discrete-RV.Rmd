@@ -3,18 +3,6 @@ title: "Discrete Random Variable and Their Distributions"
 author: "Cheng Peng"
 date: "  "
 output:
-  pdf_document:
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    number_sections: yes
-    fig_width: 5
-    fig_height: 4
-  word_document: 
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    keep_md: yes
   html_document: 
     toc: yes
     toc_float: true
@@ -24,6 +12,18 @@ output:
     fig_caption: yes
     number_sections: yes
     theme: readable
+  word_document: 
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    keep_md: yes
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    number_sections: yes
+    fig_width: 5
+    fig_height: 4
 ---
 <style type="text/css">
 
@@ -120,10 +120,7 @@ Note: $P(Y = 2) = 0$  In fact, $P(Y \notin \{0, 1 \}) = 0$.
 
 **Example 3**: Number of Boys in a family with three children.
 
-
-
-
-**Random sampling** is a method of sampling in which every possible sample of n elements to be sampled has an equal probability of being selected. 
+**Random sampling** is a method of sampling in which every possible sample of $n$ elements to be sampled has an equal probability of being selected. 
 
 
 
@@ -143,11 +140,14 @@ Note: $P(Y = 2) = 0$  In fact, $P(Y \notin \{0, 1 \}) = 0$.
 ## Definition of RV
 
 
-Let Y be a random variable, and $p(y) = P(Y =y)$.  Suppose that Y takes the values $\{ y_1, y_2, \cdots, y_k\}$  where k may be $\infty$. Then
+Let Y be a random variable, and $p(y) = P(Y =y)$, the probability of $Y$ taking value $y$.  Suppose that Y takes the values $\{ y_1, y_2, \cdots, y_k\}$  where k may be $\infty$. If both of the following conditions are satisfied,
 
 1. $0 \le P(Y = y_i) \le 1$	
 
-2. $\sum_{i=1}^k P(Y=y_i)$	 
+2. $\sum_{i=1}^k P(Y=y_i) = 1$.	 
+
+$p(y) = P(Y =y)$ is called the probability distribution of random variable $Y$. `Note that $P(Y = y)$ could have an explicit expression in the form of a non-negative function.`
+
 
 
 **Example 4**:  Toss a fair coin three times. Let Y denote the number of heads appearing.  Note that Y can take on only four values: 0, 1, 2, and 3. Then 
@@ -160,17 +160,23 @@ Let Y be a random variable, and $p(y) = P(Y =y)$.  Suppose that Y takes the valu
  
  $P(3) = P(Y = 3) = P(\{ HHH\}) = 1/8$
  
+ We will revisit this example and provide a formula for $P(Y = y)$ for this example later.
+ 
+ 
  
 ##	Expectation and Variance
 
-Let Y  be a discrete random variable. 
+Let $Y$ be a discrete random variable. 
 
 1.	The expectation or the expected value or the mean of Y is defined as $\mu = E[Y] =\sum_y yp(y)$, 
-    where the index  y in the summation is for all possible values of Y. 
+    where the index $y$ in the summation is for all possible values of $Y$. 
 
 2.	The **expected value** of a function of Y, $g(Y)$,  is given by $E[g(Y)] =\sum_y g(y)p(y)$.
  
 3.	The **variance** of a random variable Y is given by $\sigma^2 = V[Y] = E[(Y-\mu)^2]$, where $\mu = E[Y]$.
+
+
+**Comment**: *An expectation of a random variable (or a function of a random variable) is simply the weighted average of the values (taking taken by the random variable/the function of the random variable). The weights are corresponding probability of $Y$ taking its distinct values*. 
 
 
 **Example 5**: (use the experiment and the random variable in **example 4**).
@@ -178,6 +184,8 @@ Let Y  be a discrete random variable.
 $$\mu = E[X]  = 3/8 + 2 (3/8) + 3 (1/8) = 3(1+2+1)/8 = 3/2.$$
 
 $$\sigma^2 = E[(X-\mu)^2]  = (0-1.5)^2\times (1/8) +(1-1.5)^2\times (3/8) + (2-1.5)^2\times (3/8) + (3-1.5)^2\times (1/8) = 0.75.$$
+
+**Note**: In the above example, $(X-\mu)^2$ is considered as a function of random variable $Y$. 
 
 
 
@@ -193,7 +201,7 @@ $$\sigma^2 = E[(X-\mu)^2]  = (0-1.5)^2\times (1/8) +(1-1.5)^2\times (3/8) + (2-1
 
 4.	$\sigma^2 = V[Y] = E[(Y-\mu)^2] = E(Y^2) - \mu^2.$
 
-**Proof**:
+**Proof**: The proofs are not difficult. You need to use the definition of the expectation to complete the these proof. You can find details from your textbook.
 
 
 
@@ -207,13 +215,13 @@ C). Var(X)
 
 **Solution**  The above quantities can be calculated based on the following sample space.
 
-```{r fig.align='center', out.width = '20%'}
+```{r fig.align='center', out.width = '30%'}
 include_graphics("topic02/tossCoin2SampleSpace.png")
 ```
 
 and the following probability distribution table.
 
-```{r fig.align='center', out.width = '20%'}
+```{r fig.align='center', out.width = '30%'}
 include_graphics("topic02/tossCoin2ProbDist.png")
 ```
 
@@ -243,20 +251,23 @@ We follow the above three steps to define and characterize a random variable.
 `Step 2`. The distribution of $X$ is characterized in the following table using the sample size
    
    $$S=\{HHH, HHT, HTH, THH, TTT, TTH, THT, HTT \}$$
-```{r fig.align='center', out.width = '20%'}
+   
+   
+   
+```{r fig.align='center', out.width = '30%'}
 include_graphics("topic02/SampleSpace.png")
 ```
 
 
 The **probability distribution table** is given by
    
-```{r fig.align='center', out.width = '15%'}
+```{r fig.align='center', out.width = '30%'}
 include_graphics("topic02/DistTable.png")
 ```
  
 This distribution can also be defined using the following **probability distribution histogram**
 
-```{r fig.align='center', out.width = '15%'}
+```{r fig.align='center', out.width = '30%'}
 include_graphics("topic02/DistHist.png")
 ```
  
@@ -274,7 +285,7 @@ $$\mu_k = E[X^k] = 0^k P(X=0) + 1^k P(X=1) + 2^k P(X=2) + 3^k P(X = 3) = 3/8 + 2
 Some special cases:
 
 * $\mu = E[X] = 3(1 +2^1 +3^{1-1})/8 = 3\times 4 /8 = 1.5$.
-* $\sigma^2 = E[X^2] = \mu^2 = 3(1+2^2 +3^{2-1})/8 - 1.5^2 = 3\times 8/8 - 2.25 = 3-2.25 = 0.75.$
+* $\sigma^2 = E[X^2] - \mu^2 = 3(1+2^2 +3^{2-1})/8 - 1.5^2 = 3\times 8/8 - 2.25 = 3-2.25 = 0.75.$
 
 
 
@@ -297,9 +308,16 @@ Suppose there are $n$ identical and independent binary trials, each with a succe
 The probability distribution of $Y$ is given by
 
 $$
-P(Y = y) = \frac{n!}{y!(n-y)!}p^y(1-p)^{n-y}
+P(Y = y) = \frac{n!}{y!(n-y)!}p^y(1-p)^{n-y} = {n\choose y}p^y(1-p)^{n-y}
 $$
 where $y = 0, 1, \cdots, n$.
+
+
+Note that there difference ways to denote **choosing y from n** in mathematics. For example
+
+$$
+{n\choose y}, \mbox{   } C_n^y, \mbox{   }  Cy^n,  \mbox{   }  _nCy,  \mbox{   }  C_{n,y}
+$$
 
 Since binomial distribution is a special discrete distribution, we can derive the following formulas of **expectation** and **variance** after some algebra.
 
@@ -338,6 +356,7 @@ If we let X = the number of students who were successful, it does look like X fo
 $$
 P(X=15) = \frac{20!}{5!15!} 0.7^{15} 0.3^5 =  0.1789.
 $$
+
 We can use **R functions** to find relevant quantities related to the binomial distribution.
 
 ```{}
@@ -440,7 +459,7 @@ for any $x\in [x_{n-1}, x_n]$.
 **Example 10**: Suppose that we have two fair six-sided dice, one yellow and one red as in the image below.
 
 
-```{r fig.align='center', out.width = '20%'}
+```{r fig.align='center', out.width = '30%'}
 include_graphics("topic02/TwoDice.jpg")
 ```
 
@@ -521,6 +540,7 @@ This subsection lists the derivatives of commonly used functions.
   $6^\prime$. $f(x) = \log_a(x)$, $f^\prime(x) = 1/[x\ln(a)]$ for $a > 0$ and $a \ne 1$.
 
 \
+
 **Example 11**.  Find $f^\prime(x)$.
 
 (1). $f(x) =  \frac{1}{x^2}$.
