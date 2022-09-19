@@ -118,7 +118,7 @@ We have discussed the CDF for discrete random variables in the previous section.
 
 **Example 2**:  Toss a fair coin three times. Let Y denote the number of heads appearing.  Noting that 
 
-$P(Y=0) = 1/8, P(Y=1) 3/8, P(Y =2) 3/8, P(Y=3) = 1/8.$
+$P(Y=0) = 1/8, P(Y=1) = 3/8, P(Y =2) = 3/8, P(Y=3) = 1/8.$
     
 then the CDF is given by 
 
@@ -133,9 +133,16 @@ $F(Y \le 3) = P(Y=0) +P(Y=1) + P(Y =2) = 1/8 + 3/8 + 3/8 + 1/8 = 1$.
 
 The CDF is explicitly given by 
 
-```{r echo = FALSE, fig.align='center', out.width = '20%'}
-include_graphics("topic03/CDF2coinToss.png")
-```
+
+$$
+\displaystyle F_X(x) = \begin{cases} 
+ 1/8,  & x \le 0 ;   \\  
+ 4/8,  & 0 < x \le 1;  \\
+ 7/8,  & 1 < x \le 2 ; \\
+ 1,    & 2 < x \le 3;  \\
+ 1,    & x > 3.
+ \end{cases}
+$$
 
 and the plot of the CDF is given by
 
@@ -206,6 +213,29 @@ include_graphics("topic03/ContRVevent.png")
 The probability that $X$ is between a and b is the area of the shaded region.
 
  
+**Example 1**: The length of time to failure (in hundreds of hours) for a transistor is a random variable Y with distribution function given by
+ $$
+\displaystyle F(y) = \begin{cases} 
+ 0,  & y < 0 ;   \\  
+ 1-e^{-y^2},    & y \ge 0.
+ \end{cases}
+$$
+a Show that $F(y)$ has the properties of a distribution function.
+
+b Find the $.30$-quantile, $\phi_{0.30}$, of $Y$.
+
+c Find $f(y)$.
+
+d Find the probability that the transistor operates for at least 200 hours.
+
+e Find $P (Y > 100|Y \le 200)$.
+ 
+**Solution**: see the *board-work* in class. 
+ 
+ 
+ \
+ 
+ 
 ## Expectation and Variance
 
 Let X be a continuous random variable. 
@@ -238,7 +268,43 @@ The results for the expectation for discrete random variables still hold for con
 
 4. $\sigma^2 = V[X] = E[(X-\mu)^2] = E[Y^2] - \mu^2$
 
+
+
+**Example 2**: As a measure of intelligence, mice are timed when going through a maze to reach a reward of food. The time (in seconds) required for any mouse is a random variable Y with a density function given by
+
+ $$
+\displaystyle f(y) = \begin{cases} 
+ b/y^2,  & y \ge b;   \\  
+ 0,    & \text{ elsewhere}.
+ \end{cases}
+$$
+
+where $b$ is the minimum possible time needed to traverse the maze.
+
+a. Show that $f(y)$ has the properties of a density function.
+
+b. Find $F(y)$.
+
+c. Find $P(Y > b + c)$ for a positive constant $c$.
+
+d. If $c$ and $d$ are both positive constants such that $d >c$, find $P(Y >b+d|Y >b+c)$.
+
+e. Find $E[Y]$.
+
+f. Find $V[Y]$.
+
+
+**Solution**  See the *board-work* in class.
+
+
+
+
+\
+
 We will present concrete examples when discussing special continuous random variables in the subsequent sections.
+
+
+
 
 \
 
