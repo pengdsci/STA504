@@ -3,6 +3,18 @@ title: "Continuous Random Variables and Their Distributions"
 author: "Cheng Peng"
 date: "  "
 output:
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    number_sections: yes
+    fig_width: 5
+    fig_height: 4
+  word_document: 
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    keep_md: yes
   html_document: 
     toc: yes
     toc_float: true
@@ -12,18 +24,6 @@ output:
     fig_caption: yes
     number_sections: yes
     theme: readable
-  word_document: 
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    keep_md: yes
-  pdf_document:
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    number_sections: yes
-    fig_width: 5
-    fig_height: 4
 ---
 <style type="text/css">
 
@@ -270,28 +270,23 @@ The results for the expectation for discrete random variables still hold for con
 
 
 
-**Example 5**: As a measure of intelligence, mice are timed when going through a maze to reach a reward of food. The time (in seconds) required for any mouse is a random variable Y with a density function given by
+**Example 5**: Daily total solar radiation for a specified location in Florida in October has probability density
+function given by
 
  $$
 \displaystyle f(y) = \begin{cases} 
- b/y^2,  & y \ge b;   \\  
+ c(y-2)(6-y),  & 2 \le y \le 6;   \\  
  0,    & \text{ elsewhere}.
  \end{cases}
 $$
+with measurements in hundreds of calories.
 
-where $b$ is the minimum possible time needed to traverse the maze.
+a. Find the value of $c$ to make $f(y) a valid density function.
 
-a. Show that $f(y)$ has the properties of a density function.
+b. Find the expected daily solar radiation for October.
 
-b. Find $F(y)$.
+c. Find the variance of the daily solar radiation for October.
 
-c. Find $P(Y > b + c)$ for a positive constant $c$.
-
-d. If $c$ and $d$ are both positive constants such that $d >c$, find $P(Y >b+d|Y >b+c)$.
-
-e. Find $E[Y]$.
-
-f. Find $V[Y]$.
 
 
 **Solution**  See the *board-work* in class.
