@@ -3,18 +3,6 @@ title: "Continuous Random Variables and Their Distributions"
 author: "Cheng Peng"
 date: "  "
 output:
-  pdf_document:
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    number_sections: yes
-    fig_width: 5
-    fig_height: 4
-  word_document: 
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    keep_md: yes
   html_document: 
     toc: yes
     toc_float: true
@@ -24,6 +12,18 @@ output:
     fig_caption: yes
     number_sections: yes
     theme: readable
+  word_document: 
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    keep_md: yes
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    number_sections: yes
+    fig_width: 5
+    fig_height: 4
 ---
 <style type="text/css">
 
@@ -213,7 +213,7 @@ include_graphics("topic03/ContRVevent.png")
 The probability that $X$ is between a and b is the area of the shaded region.
 
  
-**Example 1**: The length of time to failure (in hundreds of hours) for a transistor is a random variable Y with distribution function given by
+**Example 4**: The length of time to failure (in hundreds of hours) for a transistor is a random variable Y with distribution function given by
  $$
 \displaystyle F(y) = \begin{cases} 
  0,  & y < 0 ;   \\  
@@ -270,7 +270,7 @@ The results for the expectation for discrete random variables still hold for con
 
 
 
-**Example 2**: As a measure of intelligence, mice are timed when going through a maze to reach a reward of food. The time (in seconds) required for any mouse is a random variable Y with a density function given by
+**Example 5**: As a measure of intelligence, mice are timed when going through a maze to reach a reward of food. The time (in seconds) required for any mouse is a random variable Y with a density function given by
 
  $$
 \displaystyle f(y) = \begin{cases} 
@@ -352,7 +352,7 @@ $$
 
 \
 
-**Example 4**: [*Finding Probabilities*] Suppose the time a friend of yours will show up for a social appointment is uniformly distributed between 5 minutes before and half an hour after the appointed time. 
+**Example 6**: [*Finding Probabilities*] Suppose the time a friend of yours will show up for a social appointment is uniformly distributed between 5 minutes before and half an hour after the appointed time. 
 
 1.	What is the probability that he will not be late? 
 
@@ -446,7 +446,7 @@ qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
 rnorm(n, mean = 0, sd = 1)
 ```
 
-**Example 5**.  The final exam scores in a statistics class were normally distributed with a mean of 63 and a standard deviation of five.
+**Example 7**.  The final exam scores in a statistics class were normally distributed with a mean of 63 and a standard deviation of five.
 
 1. Find the probability that a randomly selected student scored more than 65 on the exam.
 
@@ -492,7 +492,7 @@ qnorm(p = 0.7, mean = 63, sd = 5)
 
 \
 
-**Example 6**.  A personal computer is used for office work at home, research, communication, personal finances, education, entertainment, social networking, and a myriad of other things. Suppose that the average number of hours a household personal computer is used for entertainment is two hours per day. Assume the times for entertainment are normally distributed and the standard deviation for the times is half an hour.
+**Example 8**.  A personal computer is used for office work at home, research, communication, personal finances, education, entertainment, social networking, and a myriad of other things. Suppose that the average number of hours a household personal computer is used for entertainment is two hours per day. Assume the times for entertainment are normally distributed and the standard deviation for the times is half an hour.
 
 1. Find the probability that a household personal computer is used for entertainment between 1.8 and 2.75 hours per day.
 
@@ -636,7 +636,7 @@ qgamma(p, shape, rate = 1, scale = 1/rate, lower.tail = TRUE, log.p = FALSE)
 rgamma(n, shape, rate = 1, scale = 1/rate)
 ```
 
-**Example 7**. Engineers designing the next generation of space shuttles plan to include two fuel pumps —one active, the other in reserve. If the primary pump malfunctions, the second is automatically brought online. Suppose that the time to failure of the first pump, denoted by $X$, is a gamma distribution with a mean of 200 and a variance of 400. What are the chances that such a fuel pump system would not remain functioning for the full 50 hours?
+**Example 9**. Engineers designing the next generation of space shuttles plan to include two fuel pumps —one active, the other in reserve. If the primary pump malfunctions, the second is automatically brought online. Suppose that the time to failure of the first pump, denoted by $X$, is a gamma distribution with a mean of 200 and a variance of 400. What are the chances that such a fuel pump system would not remain functioning for the full 50 hours?
 
 **Solution**. Since $E[X] = \alpha\beta = 200$ and $V[X] = \alpha \beta^2 = 20000$, we solve the shape ($\alpha$) and scale ($\beta$) and obtain $\alpha = 2$ and $\beta = 100$. Therefore, the density function of this gamma distribution is given by
 
@@ -675,7 +675,7 @@ rexp(n, rate = 1)
 ```
 
 
-**Example 8**. The number of miles that a particular car can run before its battery wears out is exponentially distributed with an average of 10,000 miles. The owner of the car needs to take a 5000-mile trip. What is the probability that he will be able to complete the trip without having to replace the car battery?
+**Example 10**. The number of miles that a particular car can run before its battery wears out is exponentially distributed with an average of 10,000 miles. The owner of the car needs to take a 5000-mile trip. What is the probability that he will be able to complete the trip without having to replace the car battery?
 
 **Solution**: In R, the exponential related R function uses the following form
 $$
