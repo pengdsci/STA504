@@ -357,18 +357,18 @@ P(X \le x) = F(x) = \int_{-\infty}^x f(t)dt.
  \end{cases}
 \]</span></p>
 <p>a). Prove that <span class="math inline">\(f(y)\)</span> is a valid density function.</p>
-<p>b). Find the CDF of <span class="math inline">\(X\)</span>.</p>
-<p>c). Find <span class="math inline">\(E[X]\)</span> and <span class="math inline">\(V[X]\)</span>.</p>
+<p>b). Find the CDF of <span class="math inline">\(Y\)</span>.</p>
+<p>c). Find <span class="math inline">\(E[Y]\)</span> and <span class="math inline">\(V[Y]\)</span>.</p>
 <p>d). Find <span class="math inline">\(E[e^{3Y/2}]\)</span>.</p>
 <p><strong>Solution</strong> See the <em>board work</em> in the class.</p>
 <p>a). <span class="math inline">\(\int_0^\infty f(y)dy = \int_0^\infty \theta e^{-\theta y} dy = - \int_0^\infty e^{-\theta y} d(\theta y) = -\theta e^{-\theta y}|_0^\infty = - (0 - 1) = 1\)</span>. This implies that the given function is a valid density function for <span class="math inline">\(\theta &gt;0\)</span>.</p>
 <p>We have used substitution in the above derivation (the first equation): if letting <span class="math inline">\(w = -\theta y\)</span> (substitution!), then <span class="math inline">\(\int_0^\infty e^{-\theta y} d(-\theta y) = \int_0^\infty e^wdw = e^w|_0^\infty\)</span>.</p>
-<p>b). The CDF for <span class="math inline">\(X\)</span> is defined to be <span class="math display">\[
+<p>b). The CDF for <span class="math inline">\(Y\)</span> is defined to be <span class="math display">\[
 F(y) = \int_{-\infty}^y f(x)dx = \int_0^y \theta e^{-\theta x} dx = -\int_0^y e^{-\theta y}d(-\theta y) = -e^{-\theta y}|_0^y = -(e^{-\theta y} - 1) = 1 - e^{-\theta y}.
 \]</span></p>
-<p>for <span class="math inline">\(y \ge 0\)</span>. <span class="math inline">\(F(x) = 1\)</span> if <span class="math inline">\(y&lt;0\)</span>. We have used substitution in the above derivation (the third equation) implicitly.</p>
+<p>for <span class="math inline">\(y \ge 0\)</span>. <span class="math inline">\(F(x) = 0\)</span> if <span class="math inline">\(y&lt;0\)</span>. We have used substitution in the above derivation (the third equation) implicitly.</p>
 <p>c). <span class="math inline">\(E[Y] = \int_0^\infty y \theta e^{-\theta y}dy =-\int_0^\infty y e^{-\theta y}d(-\theta y)\)</span> (substitution)<br> <span class="math inline">\(= -y \int_0^\infty y d(e^{-\theta y}) = -[ye^{-\theta y}|_0^\infty-\int_0^\infty e^{-\theta y} dy]\)</span> (integral by parts)<br> <span class="math inline">\(= -[(0 - 0) - \int_0^\infty e^{-\theta y} dy] = (1/\theta) \int_0^\infty \theta e^{-\theta y} dy = 1/\theta.\)</span></p>
-<p>Note that the variance <span class="math inline">\(V[X] = E[X^2] - \mu^2\)</span>. To find the variance, we only need to calculate the second moment. <span class="math display">\[
+<p>Note that the variance <span class="math inline">\(V[Y] = E[Y^2] - \mu^2\)</span>. To find the variance, we only need to calculate the second moment. <span class="math display">\[
 E[Y^2] = \int_0^\infty y^2 \theta e^{-\theta y}dy = -\int_0^\infty y^2 e^{-\theta y}d(-\theta y)dy = -\int_0^\infty y^2 d(e^{-\theta y})dy \\ =  -[y^2e^{-\theta y}|_0^\infty -\int_0^\infty e^{-\theta y }dy^2] = \int_0^\infty e^{-\theta y}(2y)dy = 2\int_0^\infty ye^{-\theta y}dy \\ = \frac{2}{\theta} \int_0^\infty y \theta e^{-\theta y}dy 
  = \frac{2}{\theta} \times \frac{1}{\theta} = \frac{2}{\theta^2}
  \]</span></p>
@@ -549,7 +549,7 @@ V[X] = \int_0^\infty (x-\alpha\beta)^2 \frac{x^{\alpha-1}e^{-x/\beta}}{\beta^\al
 pgamma(q, shape, rate = 1, scale = 1/rate, lower.tail = TRUE, log.p = FALSE)
 qgamma(p, shape, rate = 1, scale = 1/rate, lower.tail = TRUE, log.p = FALSE)
 rgamma(n, shape, rate = 1, scale = 1/rate)</code></pre>
-<p><strong>Example 4</strong>. Engineers designing the next generation of space shuttles plan to include two fuel pumps —one active, the other in reserve. If the primary pump malfunctions, the second is automatically brought online. Suppose that the time to failure of the first pump, denoted by <span class="math inline">\(X\)</span>, is a gamma distribution with a mean of 200 and a variance of 400. What are the chances that such a fuel pump system would not remain functioning for the full 50 hours?</p>
+<p><strong>Example 4</strong>. Engineers designing the next generation of space shuttles plan to include two fuel pumps —one active, the other in reserve. If the primary pump malfunctions, the second is automatically brought online. Suppose that the time to failure of the first pump, denoted by <span class="math inline">\(X\)</span>, is a gamma distribution with a mean of 200 and a variance of 20000. What are the chances that such a fuel pump system would not remain functioning for the full 50 hours?</p>
 <p><strong>Solution</strong>. Since <span class="math inline">\(E[X] = \alpha\beta = 200\)</span> and <span class="math inline">\(V[X] = \alpha \beta^2 = 20000\)</span>, we solve the shape (<span class="math inline">\(\alpha\)</span>) and scale (<span class="math inline">\(\beta\)</span>) and obtain <span class="math inline">\(\alpha = 2\)</span> and <span class="math inline">\(\beta = 100\)</span>. Therefore, the density function of this gamma distribution is given by</p>
 <p><span class="math display">\[
 f(x) = \frac{1}{100^2\Gamma(2)}e^{-x/100} x^{2-1} = \frac{1}{10000}ye^{-x/100}, \mbox{ for } x \ge 0.
