@@ -237,9 +237,9 @@
                        <center><font color = "red">Midterm Exam 1 [10/3]</font></center>
                        
                    <li class="nav-item" data-level="2"><a href="#week05" class="nav-link">5. Moment Generating Functions</a> </li>
-                   <li class="nav-item" data-level="2"><a href="#week06" class="nav-link">6. Joint Probability Distributions </a></li>    
-                    <li class="nav-item" data-level="2"><a href="#week08" class="nav-link">7. Marginal and Conditional Distributions </a></li>
-				   <li class="nav-item" data-level="2"><a href="#week07" class="nav-link">8. Independent Random Variables and Founctions of Random Variables </a></li> 
+                   <li class="nav-item" data-level="2"><a href="#week06" class="nav-link">6. Joint and Marginal Probability Distributions </a></li>    
+                    <li class="nav-item" data-level="2"><a href="#week08" class="nav-link">7. Conditional Distributions and Independent Variables </a></li>
+				   <li class="nav-item" data-level="2"><a href="#week07" class="nav-link">8. Founctions of Random Variables </a></li> 
 
                                               <center><font color = "red">Midterm Exam 2 [11/14]</font></center>
                        
@@ -481,9 +481,9 @@
     <li><b>Format</b>: Closed-book in class exam with both show-your-work and multiple-choice questions.</li>
     <li><b>Length</b>: 120 minutes (No extension).</li>
     <li><b>Logistics</b>: A formula sheet (with only formulas) and a scientific or graphical calculator are allowed. Statistical tables will be povided.</li>
-    <li><b>Answer Key</b>: to be posted here after the exam. <!--a href="notes/Exam01-key.pdf" target="popup" 
-                   onclick="window.open('notes/Exam01-key.pdf','name','width=900,height=500')">
-                <font color = "blue" size = 4> <b> Answer Key to Weekly Exam 01 </b> </font></a-->
+    <li><b>Answer Key</b><br><a href="Exams/STA504F22Exam01-key.pdf" target="popup" 
+                   onclick="window.open('Exams/STA504F22Exam01-key.pdf','name','width=900,height=500')">
+                <font color = "blue" size = 4> <b> Suggested Answer Key to Exam 01 </b> </font></a>
     </ul>
     
 <br>   
@@ -502,12 +502,16 @@
   <li> Study Materials</li>
         <ul>
             <li> Lecture Note <br>
-                 <!--a href="notes/w05-CLTSamplingDist.html" target="popup" 
-                          onclick="window.open('notes/w05-CLTSamplingDist.html','name','width=900,height=500')">
+                 <a href="topic05-MomentGeneratingFunctions.html" target="popup" 
+                          onclick="window.open('topic05-MomentGeneratingFunctions.html','name','width=900,height=500')">
                          [HTML] </a> <BR>
-                 <a href="notes/w05-CLTSamplingDist.pdf" target="popup" 
-                          onclick="window.open('notes/w05-CLTSamplingDist.pdf','name','width=900,height=500')">
-                         [PDF] </a></li-->
+                 <a href="topic05-MomentGeneratingFunctions.pdf" target="popup" 
+                          onclick="window.open('topic05-MomentGeneratingFunctions.pdf','name','width=900,height=500')">
+                         [PDF] </a><br>
+                 <a href="topic05-MomentGeneratingFunctions.Rmd" target="popup" 
+                          onclick="window.open('topic05-MomentGeneratingFunctions.Rmd','name','width=900,height=500')">
+                  [RMD]</a>
+            </li>
 
             <li>  <font color = "red">Reading Materials:</font>Textbook - Sections 3.9 and 4.9. </li>  
         </ul>
@@ -524,13 +528,14 @@
 <!-- VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV-->
 <!-- VVVVVVVVVVVVVVVVV     Week #06    VVVVVVVVVVVVVVVVVV-->
 <!-- VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV -->
-  <h6 id="week06"  class="section" style="text-align:center"><font size = 4><b> Topic 06: Joint Probability Distributions </b></font>
+  <h6 id="week06"  class="section" style="text-align:center"><font size = 4><b> Topic 06: Joint and Marginal Probability Distributions </b></font>
     <br><center><font size = 3 color = "blue">[10/24]</font></center></h6>   
 <hr>
 
 <ul>
     <li> Calculus Review:  Functions with multiple variables</li>
-    <li> Bivariate Random Variables</li>
+    <li> Joint Distributions of Random Variables</li>
+    <li> Marginal distributions</li>
     <li> Characterizations</li>
       <ul>
           <li> Discrete distribution function  </li>
@@ -553,13 +558,12 @@
     <!-- VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV-->
 <!-- VVVVVVVVVVVVVVVVV     Week #07    VVVVVVVVVVVVVVVVVV-->
 <!-- VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV -->
-  <h6 id="week07"  class="section" style="text-align:center"><font size = 4><b> Topic 07: Marginal and Conditional Probability Distributions </b></font>
+  <h6 id="week07"  class="section" style="text-align:center"><font size = 4><b> Topic 07: Conditional Distributions and Independent Variables </b></font>
     <br><center><font size = 3 color = "blue">[10/31]</font></center></h6>
 <hr>
 
 <ul>
-   <li> Calculus Review: partial derivatives and double integrals </li>
-   <li> Marginal Distributions: Integrations and Implications  </li>
+   <li> Independence of random variables  </li>
    <li> Conditional Distributions: Integrations and Implications </li>
    <li> Study Materials</li>
            <ul>
@@ -579,13 +583,13 @@
 <!-- VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV-->
 <!-- VVVVVVVVVVVVVVVVV     Week #08    VVVVVVVVVVVVVVVVVV-->
 <!-- VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV-->
-<h6 id="week08"  class="section" style="text-align:center"><font size = 4><b>Topic 08: Independent Variables and Functional Random Variables </b></font>
+<h6 id="week08"  class="section" style="text-align:center"><font size = 4><b>Topic 08: Functions Random Variables </b></font>
     <br><center><font size = 3 color = "blue">[11/7]</font></center></h6>
 <hr>
     
 <ul>
     <li> Calculus Review:  More on double summations and double integrals</li>
-    <li> Independent distributions</li>
+    <li> Distributions of functions of random variables/li>
     <li> Expectations and Variance of a Function of Random Variables</li>
     <li> Study Materials</li>   
         <ul>
