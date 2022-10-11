@@ -3,6 +3,19 @@ title: "Moment Generating Functions (MGF)"
 author: "Cheng Peng"
 date: "  "
 output:
+  pdf_document:
+    toc: yes
+    keep_tex: false
+    toc_depth: 4
+    fig_caption: yes
+    number_sections: yes
+    fig_width: 5
+    fig_height: 4
+  word_document: 
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    keep_md: yes
   html_document: 
     toc: yes
     toc_float: true
@@ -12,19 +25,6 @@ output:
     fig_caption: yes
     number_sections: yes
     theme: readable
-  word_document: 
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    keep_md: yes
-  pdf_document:
-    toc: yes
-    keep_tex: false
-    toc_depth: 4
-    fig_caption: yes
-    number_sections: yes
-    fig_width: 5
-    fig_height: 4
 ---
 
 ```{=html}
@@ -207,7 +207,7 @@ $$
 $$
 
 $$
-+ \frac{\frac{3}{8}x^{-5/2}|_{x=1}}{3!}(x-1)^2 + \frac{-\frac{15}{16}x^{-7/2}|_{x=1}}{4!}(x-1)^2 + \cdots 
++ \frac{\frac{3}{8}x^{-5/2}|_{x=1}}{3!}(x-1)^3 + \frac{-\frac{15}{16}x^{-7/2}|_{x=1}}{4!}(x-1)^4 + \cdots 
 $$
 
 $$
@@ -313,7 +313,7 @@ $$
 $$
 
 $$
-= e^{-\frac{t^2}{2}}\int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}}e^{-\frac{y^2-2ty+t^2}{2}}dy = e^{-\frac{t^2}{2}}\int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}}e^{-\frac{(y-t)^2}{2}}d(y-t) = e^{-\frac{t^2}{2}}
+= e^{\frac{t^2}{2}}\int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}}e^{-\frac{y^2-2ty+t^2}{2}}dy = e^{\frac{t^2}{2}}\int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}}e^{-\frac{(y-t)^2}{2}}d(y-t) = e^{\frac{t^2}{2}}
 $$\
 
 \
@@ -351,17 +351,17 @@ $$
 Next, we take the third order derivative of its moment generating function $m_Z(t) = e^{-t^2/2}$ introduced in 4.2 and evaluate the result at 0 to get the third moment.
 
 $$
-\frac{d m_Z(t)}{dt} =-te^{-t^2/2},  \frac{d^2 m_Z(t)}{dt^2} =\frac{d(-te^{-t^2/2})}{dt}=(t^2-1)e^{-t^2/2}
+\frac{d m_Z(t)}{dt} =te^{t^2/2},  \frac{d^2 m_Z(t)}{dt^2} =\frac{d(te^{t^2/2})}{dt}=(t^2+1)e^{t^2/2}
 $$
 
 $$
-\frac{d^3 m_Z(t)}{dt^3} =\frac{d[(t^2-1)e^{-t^2/2}]}{dt} = [2t-t(t^2-1)]e^{-t^2/2} = -t(t^2-3)e^{-t^2/2}
+\frac{d^3 m_Z(t)}{dt^3} =\frac{d[(t^2+1)e^{t^2/2}]}{dt} = [2t+t(t^2+1)]e^{t^2/2} = t(t^2+3)e^{t^2/2}
 $$
 
 Therefore, for the standard normal distribution
 
 $$
-skew(Z) = E[Z^3] = \frac{d^3 m_Z(0)}{dt^3} = [2t+t(t^2-1)]e^{-t^2/2}|_{t = 0} = 0.
+skew(Z) = E[Z^3] = \frac{d^3 m_Z(0)}{dt^3} = t(t^2+3)e^{t^2/2}|_{t = 0} = 0.
 $$
 
 This confirms the symmetry of the standard normal distribution.
@@ -397,10 +397,10 @@ $$
 Next, we continue the process in **example 3** to find the 4-th derivative of the MGF of Z.
 
 $$
-\frac{d^4 m_Z(t)}{dt^4} =\frac{d\{(3t-t^3)e^{-t^2/2}\}}{dt} = [(3-3t^2)-t(3t-t^3)]e^{-t^2/2}=(t^4-6t^2+3)e^{-t^2/2}
+\frac{d^4 m_Z(t)}{dt^4} =\frac{d\{(3t+t^3)e^{t^2/2}\}}{dt} = [(3+3t^2)+t(3t+t^3)]e^{-t^2/2}=(t^4+6t^2+3)e^{t^2/2}
 $$
 
-Therefore, $Kurt(Z) = E[Z^4] = \frac{d^4 m_Z(0)}{dt^4} = (t^4-6t^2+3)e^{-t^2/2}|_{t=0} = 3$.
+Therefore, $Kurt(Z) = E[Z^4] = \frac{d^4 m_Z(0)}{dt^4} = (t^4+6t^2+3)e^{t^2/2}|_{t=0} = 3$.
 
 \
 
