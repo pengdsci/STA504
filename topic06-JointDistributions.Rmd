@@ -3,19 +3,6 @@ title: "Joint Distributions and Marginal Distributions"
 author: "Cheng Peng"
 date: "  "
 output:
-  pdf_document:
-    toc: yes
-    keep_tex: false
-    toc_depth: 4
-    fig_caption: yes
-    number_sections: yes
-    fig_width: 5
-    fig_height: 4
-  word_document: 
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    keep_md: yes
   html_document: 
     toc: yes
     toc_float: true
@@ -25,6 +12,19 @@ output:
     fig_caption: yes
     number_sections: yes
     theme: readable
+  word_document: 
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    keep_md: yes
+  pdf_document:
+    toc: yes
+    keep_tex: false
+    toc_depth: 4
+    fig_caption: yes
+    number_sections: yes
+    fig_width: 5
+    fig_height: 4
 ---
 
 ```{=html}
@@ -76,6 +76,9 @@ h3 { /* Header 3 - and the author and data headers use this too  */
 
 </style>
 ```
+
+
+
 ```{r setup, include=FALSE}
 # code chunk specifies whether the R code, warnings, and output 
 # will be included in the output files.
@@ -347,7 +350,9 @@ $$
 F(0.2, 0.4) = 0.08
 $$ That is the volume of the cube shown in the figure in part (a).
 
-(c). $$P(.1 \le Y1 \le .3, 0 \le Y2 \le .5) =\iint_{\{D: .1 \le Y1 \le .3, 0 \le Y2 \le .5\}}f(y_1, y_2)dA$$
+(c). 
+$$P(.1 \le Y1 \le .3, 0 \le Y2 \le .5) =\iint_{\{D: \ \ 0.1 \le Y_1 \le 0.3, \ \ 0 \le Y_2 \le 0.5\}}f(y_1, y_2)dA
+$$
 
 $$
  = \int_0^5\int_{0.1}^{0.3}1dy_1dy_2 = 1\times (0.5-0)\times (0.3-0.1) = 0.01
@@ -632,7 +637,7 @@ Find probability $P[Y_1 \le 3/4, Y_2 \le 3/4]$.
 include_graphics("topic06/example08IntegralRegion.png")
 ```
 
-The orange region is neither type I nor a type II region. We split it into $\mathcal{R_1}$ (type II region) and $\mathcal{R_2}$ (both type I and type II regions). We can then set up the double integral in the following
+The orange region is neither type I nor a type II region. We split it into $\mathcal{R}_1$ (type II region) and $\mathcal{R}_2$ (both type I and type II regions). We can then set up the double integral in the following
 
 $$
 \iint_{\mathcal{R} = \mathcal{R_1} \cup \mathcal{R_2}} f(y_1,y_2)dA = \iint_{\mathcal{R_1}} f(y_1,y_2)dA + \iint_{\mathcal{R_2}} f(y_1,y_2)dA
