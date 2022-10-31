@@ -3,19 +3,6 @@ title: "Conditional Distributions and Independence"
 author: "Cheng Peng"
 date: "  "
 output:
-  pdf_document:
-    toc: yes
-    keep_tex: false
-    toc_depth: 4
-    fig_caption: yes
-    number_sections: yes
-    fig_width: 5
-    fig_height: 4
-  word_document: 
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    keep_md: yes
   html_document: 
     toc: yes
     toc_float: true
@@ -25,6 +12,19 @@ output:
     fig_caption: yes
     number_sections: yes
     theme: readable
+  word_document: 
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    keep_md: yes
+  pdf_document:
+    toc: yes
+    keep_tex: false
+    toc_depth: 4
+    fig_caption: yes
+    number_sections: yes
+    fig_width: 5
+    fig_height: 4
 ---
 
 ```{=html}
@@ -298,7 +298,7 @@ Some technical rules can be used to test independence between two random variabl
 * If $p(x,y) = p(x)p(y)$, then $X$ and $Y$ are independent, where $p(x)$ and $p(y)$ are probability distributions of $X$ and $Y$ respectively. This means that if you can *decompose* the joint probability distribution function into the product of the corresponding marginal probability distributions, the two underlying random variables are independent.
 
 
-* For a given the joint CDF of ($X, Y$), say, $(F(x,y))$, if we can decompose the CDF as $F(x,y) = F(x)\times F(y)$, where $F(x)$ and $F(y)$ are the corresponding CDFs of $X$ and $Y$, the $X$ and $Y$ are independent. Otherwise, they are dependent.
+* For a given the joint CDF of ($X, Y$), say, $F(x,y)$, if we can decompose the CDF as $F(x,y) = F(x)\times F(y)$, where $F(x)$ and $F(y)$ are the corresponding CDFs of $X$ and $Y$, then $X$ and $Y$ are independent. Otherwise, they are dependent.
 
 
 \
