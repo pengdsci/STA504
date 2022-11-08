@@ -3,6 +3,19 @@ title: "Expectations and Covariance"
 author: "Cheng Peng"
 date: "  "
 output:
+  pdf_document:
+    toc: yes
+    keep_tex: false
+    toc_depth: 4
+    fig_caption: yes
+    number_sections: yes
+    fig_width: 5
+    fig_height: 4
+  word_document: 
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    keep_md: yes
   html_document: 
     toc: yes
     toc_float: true
@@ -12,19 +25,6 @@ output:
     fig_caption: yes
     number_sections: yes
     theme: readable
-  word_document: 
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    keep_md: yes
-  pdf_document:
-    toc: yes
-    keep_tex: false
-    toc_depth: 4
-    fig_caption: yes
-    number_sections: yes
-    fig_width: 5
-    fig_height: 4
 ---
 
 ```{=html}
@@ -373,7 +373,7 @@ To measure the linear correlation, we define the following covariance and its st
 
 ## Covariance
 
-**Definition**: Let $Y_1$ and $Y_2$ be the two random variable with $\mu_1 = E[Y_1]$ and $\mu_2 = E[Y_2]$, the covariance of $Y_1$ and $Y_2$ is defined to be
+**Definition**: Let $Y_1$ and $Y_2$ be the two random variables with $\mu_1 = E[Y_1]$ and $\mu_2 = E[Y_2]$, the covariance of $Y_1$ and $Y_2$ is defined to be
 $$
 \text{COV}(Y_1,Y_2) = E_{Y_1Y_2}\left[(Y_1-\mu_1)(Y_2-\mu_2) \right]
 $$
@@ -391,7 +391,7 @@ where $p(y_1,y_2)$ is the joint probability distribution function and $D_{Y_1Y_2
 *  If both $Y_1$ and $Y_2$ are continous, then
 
 $$
-\text{COV}(Y_1,Y_2) = \iint_{ D_{Y_1Y_2}} (y_1-\mu_1)(y_2-\mu_2)p(y_1,y_2)dA,
+\text{COV}(Y_1,Y_2) = \iint_{ D_{Y_1Y_2}} (y_1-\mu_1)(y_2-\mu_2)f(y_1,y_2)dA,
 $$
 
 \
