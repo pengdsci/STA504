@@ -404,7 +404,7 @@ Let $Y$ be the Poisson random variable with mean $\lambda$.
 1.	The distribution is given by
  
  $$
- P(Y=y) = \frac{\lambda^y e^{-y}}{y!}
+ P(Y=y) = \frac{\lambda^y e^{-\lambda}}{y!}
  $$
  
  where y = 0, 1, 2, …., and  
@@ -412,7 +412,21 @@ Let $Y$ be the Poisson random variable with mean $\lambda$.
 2.	The mean and the variance are
  
  $$ E[Y] = V[Y] = \lambda $$
- **Proof**: It is easy to prove that the above expression gives a probability distribution based on the following identity 
+ 
+ **Proof**: It is easy to prove that the above expression given a probability distribution based on the following identity (Taylor expansion)
+
+$$
+e^x = 1 + \frac{x}{1!} + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots + \frac{x^n}{n!} + \cdots
+$$
+
+The general Taylor expansion in Calculus has the following form
+
+$$
+f(x) = f(x_0) +\frac{f^\prime (x_0)}{1!} (x-x_0) + \frac{f^{\prime\prime} (x_0)}{2!}(x-x_0)^2 + \cdots + \frac{f^{(n)} (x_0)}{n!} + \cdots
+$$
+
+where $f^{(n)} (x_0)$ is n-th order derivative of $f(x)$ at $x = x_0$. This implies that $f^{\prime\prime} (x_0) = f^{(2)}(x_0)$. The above identity is the Taylor expansion of $f(x) = e^x$ at $x = x_0$.
+
 
 
 * **R Functions for Poisson Distribution**
