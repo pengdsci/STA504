@@ -3,18 +3,6 @@ title: "Continuous Random Variables and Their Distributions"
 author: "Cheng Peng"
 date: "  "
 output:
-  pdf_document:
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    number_sections: yes
-    fig_width: 5
-    fig_height: 4
-  word_document: 
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    keep_md: yes
   html_document: 
     toc: yes
     toc_float: true
@@ -24,6 +12,18 @@ output:
     fig_caption: yes
     number_sections: yes
     theme: readable
+  word_document: 
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    keep_md: yes
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    number_sections: yes
+    fig_width: 5
+    fig_height: 4
 ---
 <style type="text/css">
 
@@ -122,13 +122,13 @@ $P(Y=0) = 1/8, P(Y=1) = 3/8, P(Y =2) = 3/8, P(Y=3) = 1/8.$
     
 then the CDF is given by 
 
-$F(Y \le 0) = 1/8$.
+$F(0) = P(Y \le 0) = 1/8$.
 
-$F(Y \le 1) = P(Y=0) +P(Y=1) = 1/8 + 3/8 = 1/2$.
+$F(1) = P(Y \le 1) = P(Y=0) +P(Y=1) = 1/8 + 3/8 = 1/2$.
 
-$F(Y \le 2) = P(Y=0) +P(Y=1) + P(Y =2) = 1/8 + 3/8 + 3/8 = 7/8$.
+$F(2) = P(Y \le 2) = P(Y=0) +P(Y=1) + P(Y =2) = 1/8 + 3/8 + 3/8 = 7/8$.
 
-$F(Y \le 3) = P(Y=0) +P(Y=1) + P(Y =2) = 1/8 + 3/8 + 3/8 + 1/8 = 1$.
+$F(3) = P(Y \le 3) = P(Y=0) +P(Y=1) + P(Y =2) = 1/8 + 3/8 + 3/8 + 1/8 = 1$.
 
 
 The CDF is explicitly given by 
@@ -179,7 +179,25 @@ The geometry of the above integral is depicted in the following figure.
 include_graphics("topic03/CDFvsPDF.png")
 ```
 
-The area of the shaded region is the CDF of $X$ evaluated at $u = 8$. On the right-hand side is the curve of area vs x.
+The area of the shaded region is the CDF of $X$ evaluated at $u = 8$. On the right-hand side is the curve of area vs x. 
+
+\
+
+The following animated graph show the relationship between probability density and cumulative probability distribution.
+
+
+```{r echo=FALSE, fig.align ="center",  out.width = '40%'}
+if (knitr:::is_latex_output()) {
+  knitr::asis_output('\\url{https://github.com/pengdsci/STA504/blob/main/topic03/w04-PDFvsCDF.gif?raw=true}')
+} else {
+  knitr::include_graphics("topic03/w04-PDFvsCDF.gif")
+}
+```
+
+
+
+
+
 
 
 ## Properties of CDF and CDF of Continuous R.V.
@@ -371,347 +389,7 @@ $$
 
 \
 
-# Normal Distribution
 
-*(Section 4.5)*
-
-Let $X$ be a normal random variable or is normally distributed with mean  $\mu$ and variance  $\sigma^2$ if the pdf of $X$ is given by
- 
- $$
- f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)}{2\sigma^2}}
- $$
-with  $-\infty < x < \infty$.
-
-
-After some algebra, we can check the expectation and variance of X in the following.
-
-$$
-E[X] = \int_{-\infty}^\infty xf(x)dx = \mu
-$$
-and
-
-$$
-V[X] = \int_{-\infty}^\infty (x-\mu)^2f(x)dx = \sigma^2 
-$$
-
-
-The density curve of the normal distribution has the following form
-
-```{r echo = FALSE, fig.align='center', out.width = '40%'}
-include_graphics("topic03/normalDensity.png")
-```
-
-
-**Special Case - Standard Normal Distribution**: 
-
-When $\mu = 0$ and $\sigma = 1$, the general normal distribution reduces to the standard normal distribution.
-
-
-\
-
-The two basic types of questions: finding probability and finding quantile 
-
-\
-
-```{r echo = FALSE, fig.align='center', out.width = '40%'}
-include_graphics("topic03/normalTailArea.png")
-```
-
-
-**Finding Probabilities**
-
-Finding $P(X < x)$ (i.e., the left-tail area) for given $x$.
-
-**Finding Percentiles**
-
-Finding $x$ from $P(X<x) = p$ for given $p$ (the left-tail area).
-
-
-There are no formulas for finding probability and quantile based on the normal distribution. We can use either **software programs** or the **standard normal table** to answer the above two types of questions.
-
-In R, there are functions to find probabilities and quantiles.
-
-
-```{}
-dnorm(x, mean = 0, sd = 1, log = FALSE)
-# left-tail probability
-pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)   
-# quantile for given left-tail probability
-qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)   
-rnorm(n, mean = 0, sd = 1)
-```
-
-**Example 7**.  The final exam scores in a statistics class were normally distributed with a mean of 63 and a standard deviation of five.
-
-1. Find the probability that a randomly selected student scored more than 65 on the exam.
-
-2. Find the probability that a randomly selected student scored less than 85.
-
-3. Find the 90th percentile (that is, find the score $k$ that has 90% of the scores below $k$ and 10% of the scores above $k$).
-
-4. Find the 70th percentile (that is, find the score $k$ such that 70% of scores are below $k$ and 30% of the scores are above $k$).
-
-**Solution**: We will use R functions to answer the above questions.
-
-1. We want to find the right-tail area. R function `pnorm` can be used to find either left-tail or right-tail area. By default, it yields the left-tail area.
-
-```{r echo = FALSE, fig.align='center', out.width = '40%'}
-include_graphics("topic03/exmple5-1.jpg")
-```
-
-```{r}
-pnorm(q = 65, mean = 63, sd = 5, lower.tail = FALSE)
-```
-
-2. This probability is equal to the left-tail area and can be found in the following R function
-
-```{r}
-pnorm(q = 85, mean = 63, sd = 5)
-```
-
-3. We need to use R quantile function `qnorm()` to find the quantile.
-
-```{r echo = FALSE, fig.align='center', out.width = '40%'}
-include_graphics("topic03/exmple5-2.png")
-```
-
-```{r}
-qnorm(p = 0.9, mean = 63, sd = 5)
-```
-
-4. 70th percentile can be found using the following R command.
-
-```{r}
-qnorm(p = 0.7, mean = 63, sd = 5)
-```
-
-\
-
-**Example 8**.  A personal computer is used for office work at home, research, communication, personal finances, education, entertainment, social networking, and a myriad of other things. Suppose that the average number of hours a household personal computer is used for entertainment is two hours per day. Assume the times for entertainment are normally distributed and the standard deviation for the times is half an hour.
-
-1. Find the probability that a household personal computer is used for entertainment between 1.8 and 2.75 hours per day.
-
-2. Find the maximum number of hours per day that the bottom quartile of households uses a personal computer for entertainment.
-
-
-**Solution**. We still use R functions to answer these two questions.
-
-1. We find probability $P(1.8 < X < 2.75)$.
-
-```{r}
-pnorm(q = 2.75, mean = 2, sd = 0.5) - pnorm(q = 1.8, mean = 2, sd = 0.5)
-```
-
-```{r echo = FALSE, fig.align='center', out.width = '40%'}
-include_graphics("topic03/example6-1.png")
-```
-
-The probability that a household personal computer is used between 1.8 and 2.75 hours per day for entertainment is 0.5886.
-
-2. This is percentile question. R function `qnorm()` will be used.
-
-```{r}
-qnorm(p = 0.25, mean = 2, sd = 0.5)
-```
-
-```{r echo = FALSE, fig.align='center', out.width = '40%'}
-include_graphics("topic03/example6-2.png")
-```
-
-The maximum number of hours per day that the bottom quartile of households uses a personal computer for entertainment is 1.66 hours.
-
-
-\
-
-# Gamma Distribution
-
-*(Section 4.6)*
-
-The gamma distribution contains two special and practically important members: exponential and $\chi^2$ distributions. The PDF of gamma involves a special gamma function.
-
-## The Gamma Function 
-
-The gamma function is defined by
-
-$$
-\Gamma(r) = \int_0^\infty r^{r-1}e^{-t}dt, r > 0.
-$$
-
-It has the property that 
-
-$$
-\Gamma(r+1) = r\Gamma(r), r > 1.
-$$
-For a positive integer $n$, $\Gamma(n+1) = n\Gamma(n) = \cdots = n!$.
-
-\.
-
-## Definition of Gamma Density
-
-Gamma distribution has two different forms (reparameterization). Our textbook uses the following form
-
-$$
-\displaystyle f(x) = \begin{cases} 
- \frac{x^{\alpha-1}e^{-x/\beta}}{\beta^\alpha\Gamma(\alpha)} & \text{if $0 < x < \infty$} \\  
- 0 & \text{otherwise}  
- \end{cases}
-$$
-
-
-Density curves with various values of parameters $\alpha$ (shape) and $\beta$ (scale).
-
-The CDF is defined as
-
-$$
-F(x) = \int_0^y \frac{y^{\alpha-1}e^{-y/\beta}}{\beta^\alpha\Gamma(\alpha)} dy
-$$
-
-
-The following figures show the density curves and their corresponding CDF curves based on different values of gamma parameters.
-
-```{r echo = FALSE, fig.align='center', out.width = '70%'}
-include_graphics("topic03/gammaCDF-PDF.png")
-```
-
-\
-
-## Expectation and Variance
-
-Using the definition of expectation and variance, we can derive the formulas of the expectation and variance of gamma distribution in the following:
-
-$$
-E[X] = \int_0^\infty x \frac{x^{\alpha-1}e^{-x/\beta}}{\beta^\alpha\Gamma(\alpha)} dx = \alpha\beta
-$$
-and 
-
-$$
-V[X] = \int_0^\infty (x-\alpha\beta)^2 \frac{x^{\alpha-1}e^{-x/\beta}}{\beta^\alpha\Gamma(\alpha)} dx = \alpha\beta^2
-$$
-
-The detailed derivation of the above two formulas can be found on page 187 of the textbook.
-
-\
-
-## Special Cases
-
-* If $\alpha = 1$, the gamma distribution is reduced to the well-known exponential distribution with the following density function.
-
-$$
-\displaystyle f(x) = \begin{cases} 
- \frac{e^{-x/\beta}}{\beta} & \text{if $0 < x < \infty$} \\  
- 0 & \text{otherwise}  
- \end{cases}
-$$
-
-The expectation and variance of the exponential distribution are $E[X] = \beta$ and $V[X] = \beta^2$.
-
-The exponential distribution has been widely used in reliability and survival analysis as a base model since it is mathematically simple.
-
-
-* If $a = \nu/2$ and $\beta = 2$, the gamma distribution is reduced to the well-known $\chi^2$ distribution with $\nu$ degrees of freedom. We define the $\chi^2$ from the normal distribution in subsequent notes.
-
-The expectation and variance of $\chi_\nu^2$ is simple: $E[X] = \nu$ and $V[X] = 2\nu$.
-
-\
-
-## Use of Technology
-
-The exponential and $\chi^2$ distributions are special members of the gamma family. R has standalone sets of functions for these distributions.
-
-Special attention should be paid to the form (reparameterization) of the gamma and exponential distributions. R uses the same form as what we used in this note. We will use several examples to show how to use these R functions.
-
-### Related R Functions for Gamma Distributions
-
-*(Help document: <https://stat.ethz.ch/R-manual/R-devel/library/stats/html/GammaDist.html>)*
-
-```{}
-dgamma(x, shape, rate = 1, scale = 1/rate, log = FALSE)
-pgamma(q, shape, rate = 1, scale = 1/rate, lower.tail = TRUE, log.p = FALSE)
-qgamma(p, shape, rate = 1, scale = 1/rate, lower.tail = TRUE, log.p = FALSE)
-rgamma(n, shape, rate = 1, scale = 1/rate)
-```
-
-**Example 9**. Engineers designing the next generation of space shuttles plan to include two fuel pumps —one active, the other in reserve. If the primary pump malfunctions, the second is automatically brought online. Suppose that the time to failure of the first pump, denoted by $X$, is a gamma distribution with a mean of 200 and a variance of 400. What are the chances that such a fuel pump system would not remain functioning for the full 50 hours?
-
-**Solution**. Since $E[X] = \alpha\beta = 200$ and $V[X] = \alpha \beta^2 = 20000$, we solve the shape ($\alpha$) and scale ($\beta$) and obtain $\alpha = 2$ and $\beta = 100$. Therefore, the density function of this gamma distribution is given by
-
-$$
-f(x) = \frac{1}{100^2\Gamma(2)}e^{-x/100} x^{2-1} = \frac{1}{10000}ye^{-x/100}, \mbox{ for } x \ge 0.
-$$
-The probability $P(X < 50)$ can be found using R function `pgamma()`.
-
-```{r}
-pgamma(q=50, shape = 2, scale = 100)
-```
-
-The area of the shaded region in the following density curve is the probability.
-
-```{r echo = FALSE, fig.align='center'}
-plot(0:600, dgamma(0:600, shape =2, scale = 100), type ="l", col = "blue", lwd =2, 
-     xlab="Time to Failure", ylab = "Gamma density",
-     main = "density of the time to failure of the first pump")
-x0 = 0:50
-y0 = dgamma(0:50, shape =2, scale = 100)
-polygon(c(0, x0, 50), c(0, y0, 0), col = "#1b98e0")   
-abline(h = 0, col = "blue")
-```
-\
-
-### Related R Functions for Exponential Distributions
-
-*(Help Document: <https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Exponential.html>)*
-
-
-```{}
-dexp(x, rate = 1, log = FALSE)
-pexp(q, rate = 1, lower.tail = TRUE, log.p = FALSE)
-qexp(p, rate = 1, lower.tail = TRUE, log.p = FALSE)
-rexp(n, rate = 1)
-```
-
-
-**Example 10**. The number of miles that a particular car can run before its battery wears out is exponentially distributed with an average of 10,000 miles. The owner of the car needs to take a 5000-mile trip. What is the probability that he will be able to complete the trip without having to replace the car battery?
-
-**Solution**: In R, the exponential related R function uses the following form
-$$
-f(x) = \lambda e^{-\lambda x}, \mbox{ for } x \ge 0.
-$$
- 
-Based on the above density form, we have $E[X] = 1/\lambda$. Since $1/\lambda = 10000$, $\lambda = 1/10000$. Therefore, the desired probability $P(X > 5000)$ (upper tail) can be found using the following R function.
-
-
-```{r}
-pexp(5000, rate = 1/10000,  lower.tail = FALSE)
-```
-```{r echo = FALSE, fig.align='center'}
-plot(0:15000, dexp(0:15000, rate = 1/10000), type ="l", col = "blue", lwd =2, 
-     xlab="Number of miles", ylab = "Exponential density",
-     main = "density of the number of miles")
-x0 = 5000:15000
-y0 = dexp(5000:15000, rate = 1/10000)
-polygon(c(5000, x0, 15000), c(0, y0, 0), col = "#1b98e0")   
-abline(h = 0, col = "blue")
-```
-
-\
-
-
-### Related R Functions for $\chi_{df}^2$ Distributions
-
-*(Help Document: <https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html>)*
-
-
-```{}
-dchisq(x, df, ncp = 0, log = FALSE)
-pchisq(q, df, ncp = 0, lower.tail = TRUE, log.p = FALSE)
-qchisq(p, df, ncp = 0, lower.tail = TRUE, log.p = FALSE)
-rchisq(n, df, ncp = 0)
-```
-
-The $\chi^2$ distribution is one of the most commonly used distributions and will be used to define the $\chi^2$ test. We will not present examples in this note. But it will be used later.
-
-
-\
 
 # Calculus Review: Integrals of Functions
 
