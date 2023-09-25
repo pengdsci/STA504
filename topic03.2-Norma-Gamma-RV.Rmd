@@ -19,6 +19,7 @@ output:
     keep_md: yes
   pdf_document:
     toc: yes
+    keep_tex: true
     toc_depth: 4
     fig_caption: yes
     number_sections: yes
@@ -379,7 +380,7 @@ The gamma distribution contains two special and practically important members: e
 The gamma function is defined by
 
 $$
-\Gamma(r) = \int_0^\infty r^{r-1}e^{-t}dt, r > 0.
+\Gamma(r) = \int_0^\infty t^{r-1}e^{-t}dt, r > 0.
 $$
 
 It has the property that 
