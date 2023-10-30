@@ -3,6 +3,19 @@ title: "Conditional Distributions and Independence"
 author: "Cheng Peng"
 date: "  "
 output:
+  pdf_document:
+    toc: yes
+    keep_tex: false
+    toc_depth: 4
+    fig_caption: yes
+    number_sections: yes
+    fig_width: 5
+    fig_height: 4
+  word_document: 
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    keep_md: yes
   html_document: 
     toc: yes
     toc_float: true
@@ -12,19 +25,6 @@ output:
     fig_caption: yes
     number_sections: yes
     theme: readable
-  word_document: 
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    keep_md: yes
-  pdf_document:
-    toc: yes
-    keep_tex: false
-    toc_depth: 4
-    fig_caption: yes
-    number_sections: yes
-    fig_width: 5
-    fig_height: 4
 ---
 
 ```{=html}
@@ -387,7 +387,7 @@ $$
  \end{cases}
 $$
 
-a). Derive the marginal density functions of $Y_1$ and $Y_2$.
+a). Derive the marginal density functions of $Y_1$.
 
 b). Derive the conditional density of $Y_2$ given $Y_1 = y_1$.
 
@@ -399,23 +399,7 @@ c). Find $P(Y_2 > 0|Y_1 = .75)$.
 include_graphics("topic07/example09Domain.png")
 ```
 
-**(a)**.  First of all, we find the marginal function $Y_{Y_2}(y_2)$ using the shape of the domain that is an isosceles triangle. Note that $Y_1$ starts at $y_1=0$ and ends with two sides of the isosceles triangle. So we need two equations to reflect the two parts of the ending boundary of the domain.   
-
-**Case 1**: $0 \le y_2 \le 1$ 
-
-$$
-f_{Y_2}(y_2) = \int_0^{1-y_2} 30y_1y_2^2dy_1 = 30y_2^2\int_0^{1-y_2}y_1dy_1 =15y_2^2(1-y_2)^2 
-$$
-
-
-**Case 2**: $-1 \le y_2 \le 0$ 
-
-$$
-f_{Y_2}(y_2) = \int_0^{1+y_2} 30y_1y_2^2dy_1=30y_2^2\int_0^{1+y_2}y_1dy_1 =15y_2^2(1+y_2)^2 
-$$
-\
-
-The marginal distribution of $Y_1$ given $Y_2 = y_2$ is given below with lower and upper integral limits set up based on the following shape.
+**(a)**.  The marginal distribution of $Y_1$ given $Y_2 = y_2$ is given below with lower and upper integral limits set up based on the following shape.
 
 ```{r echo=FALSE, fig.align='center',out.width = '55%'}
 include_graphics("topic07/example09CondY2.png")
