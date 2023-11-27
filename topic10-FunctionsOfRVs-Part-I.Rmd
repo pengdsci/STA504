@@ -247,7 +247,7 @@ The next fact of **Inverses for strictly monotonic functions** will be used in t
 
 **The method of distribution functions** is typically used in two situations.
 
-1. when the new random variable, U, is a **monotonic function** of the existing random variable $Y$ with a known probability density function. To find the cumulative distribution function for $U$, $F_U (u) = P(U \le u)$, we can use the inverse function methods to express the existing random variable $Y$ in terms of the new random variable $U$ and then use the distribution of $Y$. The density function of $U$ is the derivative of $f_U(u) = F_U(u)$. <font color = "blue"> **\color{blue}This method is also called transformation method**</font>.
+1. when the new random variable, U, is a **monotonic function** of the existing random variable $Y$ with a known probability density function. To find the cumulative distribution function for $U$, $F_U (u) = P(U \le u)$, we can use the inverse function methods to express the existing random variable $Y$ in terms of the new random variable $U$ and then use the distribution of $Y$. The density function of $U$, $f_U(u)$, is the derivative of $F_U(u)$. That is, $f_U(u) = F^\prime_U(u)$ <font color = "blue"> **\color{blue}This method is also called transformation method**</font>.
 
 2. If U is not a monotonic function of the existing univariate random variable or it is a function of bivariate variables with a known joint density function, we can simply use the definition to solve inequalities to find the CDF of $U$.  <font color = "blue"> **\color{blue}This method is also called the cumulative distribution function (CDF) method**</font>.
 
