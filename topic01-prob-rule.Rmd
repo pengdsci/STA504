@@ -92,14 +92,11 @@ knitr::opts_chunk$set(echo = FALSE,
 #knitr::opts_knit$set(root.dir = 'C:\\STA551\\wkdir0')
 ```
 
-
-
-
-
+\
 
 # Introduction
 
-This note reviews the basic concepts of probability and important probability rules. 
+This note reviews the basic concepts of probability and important probability rules. At the very end, we briefly review the concepts of functions.
 
 
 
@@ -192,6 +189,18 @@ The above general additive is depicted in the following Venn diagram
 include_graphics("topic01/additiveRule.png")
 ```
 
+
+Some facts about the additive rule:
+
+* $0 \le P(E \mbox{ or } F) \le 1$.
+
+* $P(E \mbox{ or } F) \ge P(E)$  **AND** $P(E \mbox{ or } F) \ge P(F)$.
+
+* $P(E \mbox{ and } F) \le P(E)$ **AND** $P(E \mbox{ and } F) \le P(F)$.
+
+
+
+
 **Example 4**: Consider a standard playing card. Suppose we draw one card at random from the deck and define the following events:
 
 E = the card drawn is an ace
@@ -282,7 +291,8 @@ From the above figure, we can see very clearly that if event E occurs (that is, 
 
 The notation P(F|E) is read **the probability of F given E** and represents the probability that event F occurs, given that event E has already occurred. Mathematically, the probability of F giving E is given by
 
-$$P(F|E) = P(E \mbox{ and } F) / P(E)$$
+$$P(F|E) = \frac{P(E \mbox{ and } F) }{ P(E)}$$
+
 
 
 **Example 6**: The following Venn diagram illustrates conditional probability.
@@ -295,7 +305,7 @@ Based on the above Venn diagram, find P(E|F).
 
 **Solution**: P(E|F) is the probability that event E occurs given that event F has already occurred. Let's change the image a bit. Since F has occurred, we can focus on just those **outcomes** in F. And then of those, we want the probability that the **outcome** is in E. Since there are 2 of those in E, and 5 total,
 
-$$P(E|F) = P(E \mbox{ and } F) / P(F) = 2/5.$$
+$$P(E|F) = \frac{P(E \mbox{ and } F) }{P(F)} = 2/5.$$
 
 
 ## General Multiplication Rule
@@ -322,7 +332,7 @@ We want P(E and F). Using the General Multiplication Rule, we see
 
 $$P(E \mbox{ and } F) = P(E)  \times P(F|E) = (10/45) \times (9/44) \approx 0.0455.$$
 
-## Checking Independence Using Additive Rule
+## Checking Independence Using Multiplicative Rule
 
 Two events E and F are independent if event E's occurrence does not affect event F's probability.
 
@@ -361,67 +371,69 @@ Bayes' Theorem (also called Bayes Rule) is a way of finding a (posterior) probab
 
 The formula is:
 
-$$P(A|B) =  P(A) \times P(B|A) = P(B)$$
+$$P(A|B) =  P(A) \times P(B|A)$$
 
-**Which tells us**:	how often A happens given that B happens, written P(A|B),
+**Bayes Rule** tells us	how often $A$ happens given that $B$ happens - This conditional probability is denoted by $P(A|B)$.
 
-**When we know**:	 	
-* how often B happens given that A happens, written P(B|A)
-* how likely A is on its own, written P(A)
-* how likely B is on its own, written P(B)
+
+**When we need to know** in order to calculate $P(A|B)$?
+
+1.  how often $B$ happens given that A happens, denoted by $P(B|A)$.
+
+2.  how likely $A$ is on its own, denoted by  $P(A)$ or how likely $B$ is on its own, denoted by $P(B)$
  
 
-Let us say P(Fire) means how often there is fire, and P(Smoke) means how often we see smoke, then:
 
-P(Fire|Smoke) means how often there is fire when we can see smoke;
+**Example 9**: According to a research of publicly-traded companies, $60\%$ of the companies that increased their share price by **more than $5\%$** in the last three years replaced their CEOs during the period.
 
-P(Smoke|Fire) means how often we can see smoke when there is fire
+At the same time, only $35\%$ of the companies that did not increase their share price by **more than $5\%$** in the same period replaced their CEOs. Knowing that the probability that the stock prices grow by **more than $5\%$** is 4%, find the probability that the shares of a company that fires its CEO will increase by **more than 5\%**.
 
-So the formula basically tells us **forward** P(Fire|Smoke) when we know **backward** P(Smoke|Fire)
+
+
+**Solution**: Before finding the probabilities, we must first define the notation of the probabilities.
+
+
+First of all, we define two events A and B in the following:
+
+<font color = "red">**\color{red}A = Stock price increases by $5\%$**</font> 
+
+<font color = "blue">**\color{blue}B = CEO was replaced.**</font>
+
+
+With the definitions of the above two events, we need to find the following probabilities in order to use the Bayes Theorem.
+
+
+* P(A) – the probability that the stock price `increases by 5%`, that is 
+* P(B) – the probability that the CEO is replaced
+* P(A|B) – the probability of the stock price `increases by 5%` **given that** the CEO has been replaced
+* P(B|A) – the probability of the CEO replacement **given that** the stock price has `increased by 5%`.
+
+
+
+ 
+We next find the above probabilities based on the given conditions:
+
+**The first sentence**: $60\%$ of the companies that increased their share price by **more than $5\%$** <font color = "red">[A] </font> in the last three years replaced their CEOs during the period <font color = "red">[B] </font>. This means $P(B|A) = 0.6$.
+
+**The second sentence**: only $35\%$ of the companies that did not increase their share price by **more than $5\%$** in the same period replaced their CEOs. That is,  $P(B) = 0.35$.
+
+**The third sentence**: Knowing that the probability that the stock prices grow by **more than $5\%$** is 4%. That is, $P(A) = 0.04$.
+
+**The Question**: find the probability that the shares of a company that fires its CEO will increase by **more than 5\%**/ is equivalent to $P(A|B) = ?$
+
+
+
+Using the Bayes rule, we have
+
+
+$$
+P(A|B) = \frac{P(A\cap B)}{P(B)} = \frac{P(B|A)\times P(A)}{P(B)} = \frac{0.6\times 0.04}{0.35} \approx 0.06857143.
+$$
+
+
 
 \
 
-**Example 9**: Picnic Day - Suppose we are planning a picnic today, but the morning is cloudy. 
-
-Given the following prior information: 
-
-* 50% of all rainy days start off cloudy!
-* But cloudy mornings are common (about 40% of days start cloudy)
-* And this is usually a dry month (only 3 of 30 days tend to be rainy, or 10%)
-
-What is the chance of rain during the day?
-
-**Solution**: We will use Rain to mean rain during the day, and Cloud to mean cloudy morning.
-
-The chance of Rain given Cloud is written P(Rain|Cloud)
-
-So let's put that in the formula:
-
-P(Rain|Cloud) =  P(Rain) P(Cloud|Rain) / P(Cloud)
- 
-
-P(Rain) is Probability of Rain = 10%
-
-P(Cloud|Rain) is the Probability of Cloud, given that Rain happens = 50%
-
-P(Cloud) is Probability of Cloud = 40%
-
-$P(Rain|Cloud) =  0.1 \times 0.5 /0.4  = .125$
-
-Or a 12.5% chance of rain. Not too bad, let's have a picnic!
-
-
-
-One of the famous uses for the Bayes Theorem is **False Positives and False Negatives**.
-
-
-We use PCR test result of COVID-19 as an example to explain 
-
-**False Positives** = A person's PCR is positive but was not infected with COVID-19.
-
-**False Negatives** = A person's PCR is negative but was infected with COVID-19.
-
-\
 
 **Example 9**: Allergy or Not? - Hunter says she is itchy. There is a test for Allergy to Cats, but this test is not always right:
 
@@ -435,21 +447,26 @@ We want to know the chance of having the allergy when the test says **Yes**, wri
 
 **Solution**:  Let's get our formula:
 
-P(Allergy|Yes) =  P(Allergy) P(Yes|Allergy) / P(Yes)
+$$
+P(\text{Allergy|Yes}) =  \frac{P(\text{Allergy}) P(\text{Yes|Allergy})}{P(\text{Yes})}
+$$
  
+Note that we are given that $P(\text{Allergy}) =0.01$ 
 
-P(Allergy) is Probability of Allergy = 1%
+P(Yes|Allergy) is the probability of the test saying **Yes** for people with allergy = 80%. That is, $P(\text{Yes|Allergy}) = 0.8$
 
-P(Yes|Allergy) is the probability of the test saying **Yes** for people with allergy = 80%
 
 We need to find P(Yes) is the probability of the test saying **Yes** (to anyone) = ??%
 
 
 We can calculate it by adding up those with, and those without the allergy:
 
+
 * 1% have the allergy, and the test says **Yes** to 80% of them
 
+
 * 99% do not have the allergy and the test says **Yes** to 10% of them
+
 
 Then  $P(Yes) = 1\% \times 80\% + 99\% \times 10\% = 10.7\%$,  which means that about 10.7% of the population will get a **Yes** result. Therefore,
 
@@ -459,6 +476,22 @@ That is, $P(Allergy|Yes) \approx 7\%$.
 
 \
 
+## Errors in Binary Decision 
+
+\
+
+A binary decision is a choice between two alternatives, for instance between taking some specific action or not taking it. For example, graduate admission decision: Accept or decline (assuming no waiting-list); physician's diagnostic decision: diseased or disease-free, hire manager's decision on a job applicant: offer the job or do not offer the job, etc. 
+
+In practice applications, all decisions are based on certain evidence defined based on certain criteria. 
+
+One of the famous uses for the Bayes Theorem is **False Positives and False Negatives**.
+
+
+We use PCR test result of COVID-19 as an example to explain 
+
+**False Positives** = A person's PCR is positive but was not infected with COVID-19.
+
+**False Negatives** = A person's PCR is negative but was infected with COVID-19.
 
 \
 
