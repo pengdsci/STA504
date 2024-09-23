@@ -3,20 +3,6 @@ title: "Special Continuous Distributions: Normal and Gamma Families"
 author: "Cheng Peng"
 date: "  "
 output:
-  html_document: 
-    toc: yes
-    toc_float: true
-    toc_depth: 4
-    fig_width: 6
-    fig_height: 4
-    fig_caption: yes
-    number_sections: yes
-    theme: readable
-  word_document: 
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    keep_md: yes
   pdf_document:
     toc: yes
     keep_tex: true
@@ -25,6 +11,24 @@ output:
     number_sections: yes
     fig_width: 5
     fig_height: 4
+  word_document: 
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    keep_md: yes
+  html_document: 
+    toc: yes
+    toc_float: true
+    toc_depth: 4
+    fig_width: 6
+    fig_height: 4
+    fig_caption: yes
+    number_sections: yes
+    toc_collapsed: yes
+    code_folding: hide
+    code_download: yes
+    smooth_scroll: yes
+    theme: lumen
 ---
 <style type="text/css">
 
@@ -221,10 +225,76 @@ d). $E[e^{3Y/2}] = \int_0^\infty e^{3y/2} \theta e^{-\theta y} dy = \int_0^\inft
 
 *(Section 4.5)*
 
+
+Before we introduce the distribution of normal random variables, we introduce the following integral from calculus 
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+
+In Calculus III, we can convert this problem to double integral using change variable in the polar coordinate system. We will not drive this result. You can simply consider this result as theorem through out this course. 
+
+
+
+## Standard Normal Distribution
+
+
+The standard normal distribution is a special normal distribution that has a mean of zero and a standard deviation of 1. It density is given by
+
+$$
+f(z) = \frac{1}{\sqrt{2\pi}} e^{-z^2/2}, \ \ \text{ for } \ \ -\infty < z < \infty.
+$$
+
+The density curve sketched in the following
+
+```{r fig.align='center', fig.width=5, fig.height=4}
+z = seq(-3,3,0.01)
+fz = (1/(sqrt(2*pi)))*exp(-z^2)
+plot(z, fz, type = "l", lwd = 2,
+     xlab = "Z scores",
+     ylab = "Density",
+     col = "blue",
+     main = "Standard Normal Density Curve")
+
+
+```
+
+
+There are different online normal distribution calculators you can use to find probabilities and quantiles of a normal distributions. Here is the one created by R Shiny apps. <https://pengdsci.github.io/ISLA/ISLA-03.html>.
+
+
+
+
+To validate the density, we need to show
+
+1. $f(z) \ge 0$, and
+
+2. $\int_{-\infty}^\infty f(z) dz= 1$.
+
+Since both of the multiplicative terms in $f(z)$ are non-negative, therefore, $f(z) \ge 0$. To calculate in the second integral, we only need to a simple algebraic manipulation.
+
+$$
+\int_{-\infty}^\infty f(z) dz = \int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}} e^{-z^2/2} dz = \frac{1}{\sqrt{2\pi}}  \int_{-\infty}^\infty e^{-\frac{z^2}{2}} dz 
+$$
+
+$$
+= \frac{1}{\sqrt{2\pi}}  \int_{-\infty}^\infty e^{-\left(\frac{z}{\sqrt{2}}\right)^2} dz = \frac{1}{\sqrt{\pi}}  \int_{-\infty}^\infty e^{-\left(\frac{z}{\sqrt{2}}\right)^2} d(\frac{z}{\sqrt{2}})
+$$
+
+$$
+\stackrel{y=z/\sqrt{2}}{=}\frac{1}{\sqrt{\pi}}  \int_{-\infty}^\infty e^{-y^2} d(y) = \frac{1}{\sqrt{\pi}} \times \sqrt{\pi} = 1.
+$$
+
+This shows that $f(z)$ is a valid density function. We can use the definitions of the expectation and the variance to derive the expectation and variance of the standard normal distribution to be 0 and 1, respectively. 
+
+
+
+## General Normal Distribution
+
 Let $X$ be a normal random variable or is normally distributed with mean  $\mu$ and variance  $\sigma^2$ if the pdf of $X$ is given by
  
  $$
- f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)}{2\sigma^2}}
+ f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
  $$
 with  $-\infty < x < \infty$.
 
