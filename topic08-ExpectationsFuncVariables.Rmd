@@ -3,6 +3,24 @@ title: "Expectations and Covariance"
 author: "Cheng Peng"
 date: "  "
 output:
+  html_document: 
+    toc: yes
+    toc_float: yes
+    toc_depth: 4
+    fig_width: 6
+    fig_height: 4
+    fig_caption: yes
+    number_sections: yes
+    toc_collapsed: yes
+    code_folding: hide
+    code_download: yes
+    smooth_scroll: yes
+    theme: lumen
+  word_document: 
+    toc: yes
+    toc_depth: 4
+    fig_caption: yes
+    keep_md: yes
   pdf_document:
     toc: yes
     keep_tex: false
@@ -11,20 +29,6 @@ output:
     number_sections: yes
     fig_width: 5
     fig_height: 4
-  word_document: 
-    toc: yes
-    toc_depth: 4
-    fig_caption: yes
-    keep_md: yes
-  html_document: 
-    toc: yes
-    toc_float: true
-    toc_depth: 4
-    fig_width: 6
-    fig_height: 4
-    fig_caption: yes
-    number_sections: yes
-    theme: readable
 ---
 
 ```{=html}
@@ -406,7 +410,7 @@ $$
 $$
 
 
-Find $\text{COV}([Y_1, Y_2)$.
+Find $\text{COV}(Y_1, Y_2)$.
 
 
 **Solution**: Before we write the double integral, we sketch the domain of the function in the following.
