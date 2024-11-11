@@ -5,26 +5,29 @@ date: "  "
 output:
   html_document: 
     toc: yes
-    toc_float: true
+    toc_float: yes
     toc_depth: 4
     fig_width: 6
     fig_height: 4
     fig_caption: yes
     number_sections: yes
-    theme: readable
+    toc_collapsed: yes
+    code_folding: hide
+    code_download: yes
+    smooth_scroll: yes
+    theme: lumen
+    df_print: kable
+  pdf_document: 
+    toc: yes
+    toc_depth: 4
+    number_sections: yes
+    fig_width: 5
+    fig_height: 4
   word_document: 
     toc: yes
     toc_depth: 4
     fig_caption: yes
     keep_md: yes
-  pdf_document:
-    toc: yes
-    keep_tex: false
-    toc_depth: 4
-    fig_caption: yes
-    number_sections: yes
-    fig_width: 5
-    fig_height: 4
 ---
 
 ```{=html}
@@ -36,44 +39,57 @@ div#TOC li {
     background-repeat:none;
     background-position:0;
 }
+
 h1.title {
   font-size: 24px;
+  font-weight: bold;
   color: DarkRed;
   text-align: center;
 }
 h4.author { /* Header 4 - and the author and data headers use this too  */
     font-size: 18px;
+    font-weight: bold;
   font-family: "Times New Roman", Times, serif;
   color: DarkRed;
   text-align: center;
 }
 h4.date { /* Header 4 - and the author and data headers use this too  */
   font-size: 18px;
+  font-weight: bold;
   font-family: "Times New Roman", Times, serif;
   color: DarkBlue;
   text-align: center;
 }
-
 h1 { /* Header 3 - and the author and data headers use this too  */
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: bold;
     font-family: "Times New Roman", Times, serif;
     color: darkred;
     text-align: center;
 }
 h2 { /* Header 3 - and the author and data headers use this too  */
     font-size: 18px;
+    font-weight: bold;
     font-family: "Times New Roman", Times, serif;
     color: navy;
     text-align: left;
 }
 
 h3 { /* Header 3 - and the author and data headers use this too  */
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: bold;
     font-family: "Times New Roman", Times, serif;
     color: navy;
     text-align: left;
 }
 
+h4 { /* Header 4 - and the author and data headers use this too  */
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Times New Roman", Times, serif;
+    color: darkred;
+    text-align: left;
+}
 </style>
 ```
 
@@ -86,13 +102,14 @@ if (!require("knitr")) {
    install.packages("knitr")
    library(knitr)
 }
+# knitr::opts_knit$set(root.dir = "C:/Users/75CPENG/OneDrive - West Chester University of PA/Documents")
+# knitr::opts_knit$set(root.dir = "C:\\STA490\\w05")
 
 knitr::opts_chunk$set(echo = TRUE,       
-                      warnings = FALSE,   
+                      warning = FALSE,   
                       results = TRUE,   
                       message = FALSE,
-                      fig.align='center', 
-                      fig.pos = 'ht')
+                      comment = NA)
 ```
 
 
@@ -272,7 +289,7 @@ Let $\{X_1, X_2, \cdots, X_m \}$ and $\{Y_1, Y_2, \cdots, Y_n \}$ be two sets of
 
 1. $E[X_i] = \mu_i$
 
-2. $E[Y_j=\xi_j]$
+2. $E[Y_j]=\xi_j$
 
 3. $\text{V}[X_i] = \sigma_i^2$
 
@@ -395,7 +412,7 @@ We discuss conditional expectations in this section.
 **Definition**: If $Y_1$ and $Y_2$ are any two random variables, the conditional expectation of $g(Y_1)$, given that $Y_2 = y_2$, is defined to be
 
 $$
-E[g(Y_1) | Y2 = y2)] = \int_{-\infty}^\infty
+E[g(Y_1) | Y_2 = y_2)] = \int_{-\infty}^\infty
 g(y_1) f (y_1 | y_2) dy_1
 $$
 
