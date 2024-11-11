@@ -3,6 +3,12 @@ title: "Linear Function of Random Variables and Conditional Expectations"
 author: "Cheng Peng"
 date: "  "
 output:
+  pdf_document: 
+    toc: yes
+    toc_depth: 4
+    number_sections: yes
+    fig_width: 5
+    fig_height: 4
   html_document: 
     toc: yes
     toc_float: yes
@@ -17,12 +23,6 @@ output:
     smooth_scroll: yes
     theme: lumen
     df_print: kable
-  pdf_document: 
-    toc: yes
-    toc_depth: 4
-    number_sections: yes
-    fig_width: 5
-    fig_height: 4
   word_document: 
     toc: yes
     toc_depth: 4
@@ -330,18 +330,18 @@ $$
 Therefore,
 
 $$
-\text{V}(U) = \sum_{i=1}^ma_i^2E\left[(X_i-\mu_i)^2\right] + 2\sum_{i<k}a_ia_kE\left[(X_i-\mu_i)(X_k-\mu_k)\right] = \sum_{i=1}^ma_i^2\sigma_i^2+2\sum_{i<k}a_ia_k \theta_{ik}
+\text{V}(U) = \sum_{i=1}^ma_i^2E\left[(X_i-\mu_i)^2\right] + 2\sum_{i<k}a_ia_kE\left[(X_i-\mu_i)(X_k-\mu_k)\right] = \sum_{i=1}^ma_i^2\sigma_i^2+2\sum_{i<k}a_ia_k \theta_{ik},
 $$
-Similarly,
+where $\theta_{ik}$ is the covariance between $X_i$ and $X_k$.  Similarly,
 
 $$
-\text{V}(V) = \sum_{j=1}^nb_j^2E\left[(Y_j-\xi_j)^2\right] + 2\sum_{j<l}b_jb_lE\left[(Y_j-\xi_j)(Y_l-\xi_l)\right] = \sum_{j=1}^nb_j^2\delta_j^2+2\sum_{j<l}b_jb_l \omega_{jl}
+\text{V}(V) = \sum_{j=1}^nb_j^2E\left[(Y_j-\xi_j)^2\right] + 2\sum_{j<l}b_jb_lE\left[(Y_j-\xi_j)(Y_l-\xi_l)\right] = \sum_{j=1}^nb_j^2\delta_j^2+2\sum_{j<l}b_jb_l \omega_{jl},
 $$
 
-The covariance of $U$ and $V$ is given by
+where $\omega_{jl}$ is the covariance between $Y_j$ and $Y_l$. The covariance of $U$ and $V$ is given by
 
 $$
-\text{COV}(U,V) = \sum_{i=1}^m\sum_{j=1}^na_ib_j\text{COV}(X_i,Y_j) =\sum_{i=1}^m\sum_{j=1}^na_ib_j \phi_{ij} 
+\text{COV}(U,V) = \sum_{i=1}^m\sum_{j=1}^na_ib_j\text{COV}(X_i,Y_j) =\sum_{i=1}^m\sum_{j=1}^na_ib_j \phi_{ij}. 
 $$
 
 \
@@ -354,13 +354,17 @@ $$
 
 3. $\text{COV}(U,V)=0$.
 
-
 \
+
+
+In terms of computation, we still need to do double integrals if the joint distribution involves two continuous random variables. 
+
 
 
 ## Linear Functions of IID RVs
 
-One of the basic assumptions of many statistical modeling is that the random sample is **i**ndependently taken from an **i**dentically **d**istributed population with a certain distribution. This sample is conventionally called the **iid** sample. 
+One of the basic assumptions of many statistical modeling is that the random sample is **i**ndependently taken from an **i**dentically **d**istributed population with a certain distribution. This sample is conventionally called the **iid** sample. Next, we will show why **i.i.d** sample is so important in mathematical statistics.
+
 
 Let $\{X_1, X_2, \cdots, X_n \}$ be an **iid** sample from a population with density function $f(x)$ with mean $\mu$ and standard deviation $\sigma$. If $f(x) is specified, it could be any distribution such as binomial, Poison, uniform, normal, or gamma distributions, etc. If we make an inference about the population mean, the best point estimate is the sample mean (will show this in STA506) which is the average of the sample
 
@@ -397,6 +401,16 @@ $$
 \bar{X} \to_{\text{exact}} N\left(\mu, \frac{\sigma^2}{n} \right)
 $$
 
+
+**Question**: If$\{X_1, X_2, \cdots, X_n \}$ **is not** an **i.i.d** sample from a population with density function $f(x)$ with mean $\mu$ and standard deviation $\sigma$. What are the mean and variance? Do we still have the above two neat results?
+
+We can consider the the above questions in different scenarios: 
+
+* independent but not identical distributions.
+
+* identical but not independent distributions.
+
+\
 
 # Conditional Expectation
 
@@ -457,6 +471,18 @@ Therefore, the conditional density function of $Y_1|Y_2 = y_2$ is given by
 $$
 f_{Y_1|Y_2}(y_1|y_2) = \frac{f(y_1,y_2)}{f_{Y_1}(y_1)} = \frac{1/2}{y_2/2} = \frac{1}{y_2}, \text{ for } 0 \le y_1 \le y_2 \le 2.
 $$
+
+\
+
+<font color = "red">**\color{red} Is the above expression a valid density function?**</font>
+
+It is a valid density (**caution:** $y_2$ is considered as a constant)! To see this
+
+$$
+\int_0^{y_2} \frac{1}{y_2} dy_1 = \frac{1}{y_2}\times y_1|_0^{y_2} = \frac{1}{y_2}(y_2-0) = 1.
+$$
+
+\
 
 Hence, the conditional expectation of $Y_1|Y_2 = 1.5$ is given by
 
