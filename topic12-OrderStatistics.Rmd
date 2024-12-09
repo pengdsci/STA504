@@ -18,13 +18,17 @@ output:
     keep_md: yes
   html_document: 
     toc: yes
-    toc_float: true
+    toc_float: yes
     toc_depth: 4
     fig_width: 6
     fig_height: 4
     fig_caption: yes
     number_sections: yes
-    theme: readable
+    toc_collapsed: yes
+    code_folding: hide
+    code_download: yes
+    smooth_scroll: yes
+    theme: lumen
 ---
 
 ```{=html}
@@ -40,31 +44,36 @@ h1.title {
   font-size: 24px;
   color: DarkRed;
   text-align: center;
+  font-weight: bold;
 }
 h4.author { /* Header 4 - and the author and data headers use this too  */
     font-size: 18px;
   font-family: "Times New Roman", Times, serif;
   color: DarkRed;
   text-align: center;
+  font-weight: bold;
 }
 h4.date { /* Header 4 - and the author and data headers use this too  */
   font-size: 18px;
   font-family: "Times New Roman", Times, serif;
   color: DarkBlue;
   text-align: center;
+  font-weight: bold;
 }
 
-h1 { /* Header 3 - and the author and data headers use this too  */
+h1 { /* Header 1 - and the author and data headers use this too  */
     font-size: 20px;
     font-family: "Times New Roman", Times, serif;
     color: darkred;
     text-align: center;
+  font-weight: bold;
 }
-h2 { /* Header 3 - and the author and data headers use this too  */
+h2 { /* Header 2 - and the author and data headers use this too  */
     font-size: 18px;
     font-family: "Times New Roman", Times, serif;
     color: navy;
     text-align: left;
+  font-weight: bold;
 }
 
 h3 { /* Header 3 - and the author and data headers use this too  */
@@ -72,10 +81,12 @@ h3 { /* Header 3 - and the author and data headers use this too  */
     font-family: "Times New Roman", Times, serif;
     color: navy;
     text-align: left;
+  font-weight: bold;
 }
 
 </style>
 ```
+
 ```{r setup, include=FALSE}
 # code chunk specifies whether the R code, warnings, and output 
 # will be included in the output files.
@@ -86,7 +97,7 @@ if (!require("knitr")) {
 }
 #
 knitr::opts_chunk$set(echo = TRUE,       
-                      warnings = FALSE,   
+                      warning = FALSE,   
                       results = TRUE,   
                       message = FALSE,
                       fig.align='center', 
@@ -128,13 +139,30 @@ In a reliability system, a series system needs all of its components to function
 include_graphics("topic12/seriesSystem.png")
 ```
 
+For example, we add the lifetime of each component in the above serial system in the following 
+
+
+```{r echo = FALSE, fig.align='center', out.width = '50%'}
+include_graphics("topic12/seriesSystem-example.png")
+```
+
+
+The lifetime of the system is 
+
+$$
+\text{system lifetime} = \min \{7, 3, 5 \} = 4.
+$$.
+
+
+Next, we use an example to show how to characterize the distribution of the statistic $X_{(1)} = \text{min}\{X_1, X_2, \cdots, X_n \}$ where the independent component $\{X_1, X_2, \cdots, X_n \} \rightarrow f_i(x)$.
+
 
 <font color = "darkred">**\color{red}Example 1**</font> Consider an <font color = "red"> **\color{red} independent**</font> n-component series system in which the component lifetimes $\{ X_1, X_2, \cdots, X_n \}$ are exponential random variables with rate parameters rates $\lambda_i$ for $i = 1,2, \cdots, \lambda_n$. Let $Y$ denote the lifetime that the system fails. What is the distribution of $Y$?
 
 **Solution**: Since the density function of $i$-th component's lifetime is given by
 
 $$
-f_i(x) = \lambda_i e^{-\lambda x}, \ \ \ \text{ for } \ \ x > 0.
+f_i(x) = \lambda_i e^{-\lambda_i x}, \ \ \ \text{ for } \ \ x > 0.
 $$
 
 Its CDF is given by
@@ -149,11 +177,13 @@ $$
 f_{Y_{(1)}}(y) = P[Y_{(1)} \le y] = P[\min \{X_1, X_2, \cdots, X_n \} \le y] = 1-P[\min \{X_1, X_2, \cdots, X_n \} > y]
 $$
 
+
 Since the smallest lifetime is bigger than $y$, therefore,  every $X_i$ is greater than $Y$. Equivalently, event $\min \{X_1, X_2, \cdots, X_n \} > y$ is identical to $\{X_1 >y \cap X_2 >y \cap \cdots \cap X_n >y\}$. Using the assumption that the components' lifetimes are independent, we have
 
 $$
 P[\min \{X_1, X_2, \cdots, X_n \} > y] = P[X_1 >y \cap X_2 >y \cap \cdots \cap X_n >y] 
 $$
+
 
 $$
 = P[X_1 >y] \times P[ X_2 >y] \times  \cdots \times P[ X_n >y] = \big(1-P[X_1 \le y]\big) \times \big( 1-P[ X_2 >y]\big) \times  \cdots \times \big( 1- P[ X_n >y] \big)
@@ -169,11 +199,13 @@ $$
 F_{Y_{(1)}}(y) = 1 - e^{-(\lambda_1 + \lambda_2 + \cdots + \lambda_n)y}.
 $$
 
+
 The corresponding PDF is given by
 
 $$
 f_{Y_{(1)}}(y) = (\lambda_1 + \lambda_2 + \cdots + \lambda_n) e^{-(\lambda_1 + \lambda_2 + \cdots + \lambda_n)y}.
 $$
+
 
 We can see that the minimum statistics is also an exponential distribution with rate $\lambda = \lambda_1 + \lambda_2 + \cdots + \lambda_n$. 
 
@@ -199,9 +231,23 @@ $$
 We also use a reliability system as an example. A parallel system is one that <font color = "red">*\color{red}needs only one of its components to function in order for the system itself to be functional* </font>. Assuming the parallel system has $n$ independent components with corresponding lifetimes $\{ X_1, X_2, \cdots, X_n \}$. In this situation, the lifetime of a serial system is  $X_{(n)} = \max \{X_1, X_2, \cdots, X_n \}$. We next derive the distribution of $X_{(n)}$ so we can calculate the mean, variance, and other numeric measures of $X_{(n)}$.
 
 
-```{r echo = FALSE, fig.align='center', out.width = '35%'}
+```{r echo = FALSE, fig.align='center', out.width = '30%'}
 include_graphics("topic12/parallelSystem.png")
 ```
+
+For ease of illustration, we assign a lifetime to each individual component in the following.
+
+```{r echo = FALSE, fig.align='center', out.width = '38%'}
+include_graphics("topic12/parallelSystem-example.png")
+```
+
+The lifetime of the system is 
+
+$$
+\text{system lifetime} = \max \{7, 3, 5 \} = 7.
+$$
+
+The following example demonstrates how to find the distribution of the system lifetime based on a given liftime distributions of the individual components in the parallel system.
 
 
 <font color = "darkred">**\color{red}Example 3**</font> Consider an <font color = "red"> **\color{red} independent**</font> n-component **parallel** system in which the component lifetimes $\{ X_1, X_2, \cdots, X_n \}$ are exponential random variables with rate parameters rates $\lambda_i$ for $i = 1,2, \cdots, \lambda_n$. Let $Y$ denote the lifetime that the system fails. What is the distribution of $Y$?
@@ -210,7 +256,7 @@ include_graphics("topic12/parallelSystem.png")
 
 
 $$
-f_i(x) = \lambda_i e^{-\lambda x}, \ \ \ \text{ for } \ \ x > 0.
+f_i(x) = \lambda_i e^{-\lambda_i x}, \ \ \ \text{ for } \ \ x > 0.
 $$
 
 Its CDF is given by
@@ -242,6 +288,9 @@ F_{Y_{(n)}}(y) = [1-e^{-\lambda_1y}]\times [1-e^{-\lambda_2y}]\times \cdots \tim
 $$
 
 
+
+
+
 <font color = "darkred">**\color{red}Example 4**</font>: We now modify the system we discussed in **Example 2**. Consider a 3-component **parallel system**: where each component has an exponential lifetime with rates $0.2, 0.3$, and $0.5$, respectively. Find the probability that the system fails in one unit of time.
 
 
@@ -265,9 +314,23 @@ This means the probability the parallel system's lifetime is less than one unit 
 We have discussed the simplest reliability systems: series and parallel systems. The actual reliability systems usually consist of combined series and parallel components. For example, the following figure depicts a system with both series and parallel components.
 
 
-```{r echo = FALSE, fig.align='center', out.width = '35%'}
+```{r echo = FALSE, fig.align='center', out.width = '55%'}
 include_graphics("topic12/combinedSystem.png")
 ```
+
+We can similarly assign lifetime to individual component in the above system and get
+
+
+```{r echo = FALSE, fig.align='center', out.width = '55%'}
+include_graphics("topic12/combinedSystem-example.png")
+```
+
+
+The lifetime of the hybrid system is given by
+
+$$
+\text{system lifetime} = \max \{\min\{3, 5 \},7 \}= 7.
+$$
 
 
 We now use the derived CDF in Sections 1 and 2 to derive the lifetime distribution of the combined system shown in the above system.
