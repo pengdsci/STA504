@@ -150,7 +150,7 @@ include_graphics("topic12/seriesSystem-example.png")
 The lifetime of the system is 
 
 $$
-\text{system lifetime} = \min \{7, 3, 5 \} = 4.
+\text{system lifetime} = \min \{7, 3, 5 \} = 3.
 $$.
 
 
@@ -174,7 +174,7 @@ $$
 Using the CDF method, we derive the distribution of $Y_{(1)}$ as follows.
 
 $$
-f_{Y_{(1)}}(y) = P[Y_{(1)} \le y] = P[\min \{X_1, X_2, \cdots, X_n \} \le y] = 1-P[\min \{X_1, X_2, \cdots, X_n \} > y]
+F_{Y_{(1)}}(y) = P[Y_{(1)} \le y] = P[\min \{X_1, X_2, \cdots, X_n \} \le y] = 1-P[\min \{X_1, X_2, \cdots, X_n \} > y]
 $$
 
 
@@ -215,7 +215,7 @@ We can see that the minimum statistics is also an exponential distribution with 
 **Solution**: From the result of the above example, the time to failure of the series system is $Y_{(1)}$ that has distribution 
 
 $$
-F_{Y_{(1)}} (y) = 1 - e^{-(0.1 + 0.2 + 0.5)y} = 1 - e^{-y}.
+F_{Y_{(1)}} (y) = 1 - e^{-(0.2 + 0.3 + 0.5)y} = 1 - e^{-y}.
 $$
 
 The probability that the system fails in one unit of time is given by
@@ -268,7 +268,7 @@ $$
 Using the CDF method, we derive the distribution of $Y_{(1)}$ as follows.
 
 $$
-f_{Y_{(n)}}(y) = P[Y_{(n)} \le y] = P[\max \{X_1, X_2, \cdots, X_n \} \le y] 
+F_{Y_{(n)}}(y) = P[Y_{(n)} \le y] = P[\max \{X_1, X_2, \cdots, X_n \} \le y] 
 $$
 
 Since the largest lifetime is less than $y$, therefore,  every $X_i$ is less than $Y$. Equivalently, event $\max \{X_1, X_2, \cdots, X_n \} \le y$ is identical to $\{X_1 \le y \cap X_2 \le y \cap \cdots \cap X_n \le y\}$. Using the assumption that the components' lifetimes are independent, we have
@@ -352,12 +352,12 @@ $$
 $$
 
 $$
-=\bigg( 1 - [1-e^{-\lambda_1 y}]\times [1-e^{-\lambda_2 y}] \bigg) \times \bigg( 1-\lambda_2 e^{-\lambda_3 y}\bigg)
+=\bigg( 1 - [1-(1-e^{-\lambda_1 y})]\times [1-(1-e^{-\lambda_2 y})] \bigg) \times \bigg( 1-\lambda_2 e^{-\lambda_3 y}\bigg)
 $$
 
 
 $$
-=\bigg(e^{-\lambda_1y} + e^{-\lambda_2 y} - e^{-(\lambda_1 + \lambda_2)y} \bigg)\bigg( 1- e^{-\lambda_3 y}\bigg).
+=\bigg(1 - e^{-(\lambda_1 + \lambda_2)y} \bigg)\bigg( 1- e^{-\lambda_3 y}\bigg).
 $$
 
 Next, we modify examples 2 and 4 with numerical rates.
@@ -369,10 +369,10 @@ Next, we modify examples 2 and 4 with numerical rates.
 **Solution**: Using the above derived CDF of the combined system, we 
 
 $$
-P[Y \le 1] = \bigg(e^{-0.2} + e^{-0.3} - e^{-(0.2 + 0.3)} \bigg)\bigg( 1- e^{-0.5}\bigg) \approx 0.375.
+P[Y \le 1] = \bigg(1 - e^{-(0.2 + 0.3)} \bigg)\bigg( 1- e^{-0.5}\bigg) \approx 0.155.
 $$
 
-The probability that the combined system fails in one unit of time is about 37.5\%, as expected, that is between 1.85\% (for the parallel system) and 63.2\% (for the series system).
+The probability that the combined system fails in one unit of time is about 15.5\%, as expected, that is between 1.85\% (for the parallel system) and 63.2\% (for the series system).
 
 
 
